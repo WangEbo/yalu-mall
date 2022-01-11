@@ -1,3 +1,6 @@
+# yalu-mall
+雅鹿官网前端
+
 ## 命令
 
 1. 开发环境
@@ -89,3 +92,4 @@ npm run serve
         favicon.ico
         index.html
 ```
+
