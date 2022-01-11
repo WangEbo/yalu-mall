@@ -1,0 +1,46 @@
+.time-info{
+  .info-header{
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 32px;
+    h3{
+      font-size: 18px;
+      color: #000;
+    }
+    .more{
+      color: #919191;
+      font-size: 18px;
+      &:hover{
+        color: $activeColor;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .info-title{
+    font-size: 36px;
+    color: #000;
+    font-weight: bold;
+  }
+
+  .divide-line{
+    height: 1px;/*no*/
+    width: 100%;
+    background-color: #dddddd;
+    margin: 30px 0;
+  }
+
+  .view-all{
+    margin-top: 36px;
+  }
+  em.arrow{
+    font-size: 0;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent transparent #dddddd;
+    border-style: solid;
+    border-width: 8px;/*no*/
+    vertical-align: middle;
+  }
+}
