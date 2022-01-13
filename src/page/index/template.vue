@@ -11,7 +11,7 @@
                   <div class="banner-item" :style="{'background-image': `url(${item.r1_src})`}"></div>
                 </y-swiper-slide>
                 <ul class="swiper-nav">
-                  <li :class="{active: r1ActiveIndex == i}" v-for="(item, i) in r2BannerList"  @click="swiperJump('r1Swiper',i)" :key="i"></li>
+                  <li :class="{active: r1ActiveIndex == i}" v-for="(item, i) in r1BannerList"  @click="swiperJump('r1Swiper',i)" :key="i"></li>
                 </ul>
               </y-swiper>
             </div>
@@ -20,12 +20,13 @@
         <section id="r2" class="section part">
           <div class="section-content">
             <div class="banner-wrap">
-              <y-swiper ref="r2Swiper" :autoPlay="true" :delay="2000" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
+              <y-swiper ref="r2Swiper" :autoPlay="false" :delay="2000" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r2BannerList" :key="i">
                   <div class="banner-item" :style="{'background-image': `url(${item.r2_src})`}">
                     <div class="view-more">
+                      <p class="item-eng-name">{{item.r2_englishName}}</p>
                       <p class="item-name">{{item.r2_name}}</p>
-                      <a :href="`./category.html?id=${item.r2_value}`"><span>探索更多系列</span></a>
+                      <a :href="`./category.html?id=${item.r2_value}`"><span>新品速递</span></a>
                     </div>
                   </div>
                 </y-swiper-slide>
@@ -38,13 +39,14 @@
               </div>
             </div>
             <ul  class="category-wrap">
-              <li :style="{width: r2BannerList.length > 0 ? yToFixed(100/r2BannerList.length, 6) + '%': '100%'}" v-for="(item, i) in r2BannerList" :key="i">
-                <a :href="`./category.html?id=${item.r2_value}`">
-                  <div class="category-box">
-                    <div class="item-img" :style="{'background-image': `url(${item.r2_src})`}">
-                      <img :src="item.r2_src" alt="">
+              <li v-for="(item, i) in r2BannerList" :key="i">
+                <a :href="`./category.html?id=${item.r2_value}`" :style="{'background-image': `url(${item.r2_src})`}">
+                  <img :src="item.r2_src" alt="">
+                  <div class="cate-des">
+                    <div class="inner">
+                      <p class="item-eng-name">{{item.r2_englishName}}</p>
+                      <div class="item-name">{{item.r2_name}}</div>
                     </div>
-                    <div class="item-name">{{item.r2_name}}</div>
                   </div>
                 </a>
               </li>
@@ -101,6 +103,13 @@ import YFooter from "@component/YFooter";
 
 import { getFetchTest } from "@model/index";
 
+require("../../assets/imgs/banner/banner1.png");
+require("../../assets/imgs/banner/banner2.png");
+require("../../assets/imgs/banner/banner3.png");
+require("../../assets/imgs/cate1.png");
+require("../../assets/imgs/cate2.png");
+require("../../assets/imgs/cate3.png");
+require("../../assets/imgs/cate4.png");
 export default {
   components: {
     YHeader, YSwiper, YSwiperSlide, YFooter, YNewsCard,
@@ -121,6 +130,7 @@ export default {
         {
           r2_src: "",
           r2_name: "",
+          r2_englishName: "",
           r2_value: "",
         },
       ],
@@ -192,7 +202,7 @@ export default {
       setTimeout(()=> {
         this.r1BannerList = [
           {
-            r1_src: "http://www.361sport.com/upfiles/onepage/202106/20210653241190024.jpeg",
+            r1_src: "/img/banner1.png",
             r1_name: "",
           },
           {
@@ -209,18 +219,27 @@ export default {
     getR2BannerList(){
       this.r2BannerList = [
         {
-          r2_src: "http://www.361sport.com/upfiles/goods/202102/1612506523998.jpg",
-          r2_name: "篮球",
+          r2_src: "/img/banner2.png",
+          r2_englishName: "WOMEN’S DRESS",
+          r2_name: "女装",
           r2_value: "",
         },
         {
-          r2_src: "http://www.361sport.com/upfiles/goods/202010/1602317522208.jpg",
-          r2_name: "综训",
+          r2_src: "/img/cate2.png",
+          r2_englishName: "MAN’S DRESS",
+          r2_name: "男装",
           r2_value: "",
         },
         {
-          r2_src: "http://www.361sport.com/upfiles/goods/202102/1612506593809.jpg",
-          r2_name: "跑步",
+          r2_src: "/img/cate3.png",
+          r2_englishName: "MEN’S DRESS",
+          r2_name: "时尚冬装",
+          r2_value: "",
+        },
+        {
+          r2_src: "/img/cate4.png",
+          r2_englishName: "C&A",
+          r2_name: "中老年装",
           r2_value: "",
         },
       ];
@@ -228,11 +247,11 @@ export default {
     getR3BannerList(){
       this.r3BannerList =  [
         {
-          r3_src: "http://www.361sport.com/upfiles/news/202201/1641346022944.jpg",
+          r3_src: "/img/banner3.png",
           r3_name: "",
           r3_title: "丁伍号：深耕亚运，做走向世界的民族品牌",
           r3_value: "1",
-          r3_des: "三六一度(中国)有限公司执行董事兼总裁丁伍号接受采访，以企业领导人的视角，讲述了361°长期服务亚运会的历程。",
+          r3_des: "传统服饰与现代时装融合执行董事兼总裁丁伍号接受采访，以企业领导人的视角，讲述了361°长期服务亚运会的历程。",
         },
         {
           r3_src: "http://www.361sport.com/upfiles/news/202112/1639809808193.jpg",

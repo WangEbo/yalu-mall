@@ -7,10 +7,11 @@ module.exports = function(env){
   const baseConfig = webpackBaseFn(env)
   const mergedOptions = webpackMerge(baseConfig,{
     mode:"development",
-    devtool: process.env.ENVIROMENT == 'dev' ? 'eval-source-map' : '',
+    devtool: process.env.ENVIROMENT == 'dev' ? 'eval-source-map' : "cheap-module-source-map",
     devServer:{
       contentBase:resolve("dist"),
       host:"0.0.0.0",
+      port: 3002,
       useLocalIp: true,
       overlay:{
         errors:true,
@@ -40,6 +41,5 @@ module.exports = function(env){
       new webpack.HotModuleReplacementPlugin(),
     ],
   });
-  console.dir(mergedOptions.module.rules);
   return mergedOptions
 }

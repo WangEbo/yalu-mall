@@ -1,76 +1,19 @@
 <template>
   <header class="y-header">
-    <div class="nav" @mouseleave="showSearch = false">
+    <div class="notice">{{notice}}</div>
+    <div class="nav-wrap" @mouseleave="showSearch = false">
       <a href="/" title="雅鹿官方网站" class="logo-box">
-        <img src="templates/dist/img/m-logo.svg" alt="雅鹿官方网站">
+        <img src="../../assets/imgs/logo.png" alt="雅鹿官方网站">
       </a>
       <nav class="pc-nav pc">
         <ul>
-          <li class="go-down">
-            <a class="menu-level-1">品牌介绍</a>
-            <div class="out-nav">
+          <li class="go-down"  v-for="(item,i) in menus" :key="i">
+            <a class="menu-level-1">{{item.name}}</a>
+            <div class="out-nav" v-if="item.childs && item.childs.length">
               <span></span>
               <div class="items">
                 <div class="right">
-                  <a class="_hover" href="about.html">品牌概况</a>
-                  <a class="_hover" href="history.html">品牌历程</a>
-                  <a class="_hover" href="responsibility.html">社会责任</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="go-down">
-            <a class="menu-level-1"  href="javascript: void(0)">品牌资讯</a>
-            <div class="out-nav">
-              <span></span>
-              <div class="items">
-                <div class="right">
-                  <a class="_hover" href="news.html">品牌资讯</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="go-down">
-            <a class="menu-level-1" href="goods.html">官方商城</a>
-            <div class="out-nav">
-              <span></span>
-              <div class="items">
-                <div class="right">
-                  <a class="_hover  on" href="goods_top_1.html">跑步系列</a>
-                  <a class="_hover " href="goods_top_3.html">篮球系列</a>
-                  <a class="_hover " href="goods_top_4.html">生活系列</a>
-                  <a class="_hover " href="goods_top_2.html">综训系列</a>
-                  <a class="_hover " href="goods_top_11.html">团购定制</a>
-
-                </div>
-              </div>
-            </div>
-          </li>
-          <!-- <li><a class="menu-level-1">门店查询</a></li> -->
-          <li><a class="menu-level-1" href="http://361degrees.todayir.com" rel="nofollow" target="_blank">投资者关系</a></li>
-          <li class="go-down">
-            <a class="menu-level-1">其他品牌</a>
-            <div class="out-nav">
-              <span></span>
-              <div class="items">
-                <div class="right">
-                  <a class="_hover" href="http://www.361-kids.com/" target="_blank">361°童装</a>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="go-down">
-            <a class="menu-level-1">全球网点 Global</a>
-            <div class="out-nav">
-              <span></span>
-              <div class="items">
-                <div class="right">
-                  <a class="_hover" href="http://www.361europe.com/" target="_blank">欧洲 Europe</a>
-                  <a class="_hover" href="http://www.361usa.com/" target="_blank">美国 United States</a>
-                  <a class="_hover" href="http://361LatinAmerica.com" target="_blank">拉丁美洲 Latin America</a>
-                  <a class="_hover" href="http://361sport.cm" target="_blank">喀麦隆 Cameroon</a>
-                  <a class="_hover" href="http://361sport.co.za" target="_blank">南非 South Africa</a>
-                  <a class="_hover" href="http://361sport.jp" target="_blank">日本 Japan</a>
+                  <a v-for="(child, cIndex) in item.childs" :key="cIndex" class="_hover" :href="child.url || 'javascript: void(0)'">{{child.name}}</a>
                 </div>
               </div>
             </div>
@@ -78,16 +21,10 @@
         </ul>
       </nav>
       <div class="go-search">
+        <input type="text" class="search-input" @keydown.enter="search" name="keywords" v-model="keywords" placeholder="">
         <a @click="showSearch = true" href="javascript: void(0)" class="icon iconfont icon-search"></a>
       </div>
-      <div class="search-wrap" v-show="showSearch">
-        <div class="layout-search">
-          <input type="text" name="keywords" value="" placeholder="输入关键词搜索">
-          <a href="javascript: void(0)" class="icon iconfont icon-search"></a>
-        </div>
-        
-        <a href="javascript: void(0)" class="icon iconfont icon-close"></a>
-      </div>
+
       <div id="menu" @click="appOn = true" class="app">
         <span></span>
         <span></span>
@@ -113,13 +50,7 @@
 </template>
 
 <script>
-function getNextElement(node){
-  var NextElementNode = node.nextSibling;
-  while(NextElementNode.nodeValue != null){
-    NextElementNode = NextElementNode.nextSibling;
-  }
-  return NextElementNode;
-}
+
 export default {
   name: "YHeader",
   data(){
@@ -128,15 +59,21 @@ export default {
       appOn: false,
       menus: [
         {
+          name: "首页",
+          url: "/",
+          childs: [
+          ],
+        },
+        {
           name: "品牌介绍",
           url: "",
           childs: [
             {
-              name: "公司概况",
+              name: "品牌概况",
               url: "history.html",
             },
             {
-              name: "发展历程",
+              name: "品牌历程",
               url: "history.html",
             },
             {
@@ -181,49 +118,9 @@ export default {
             },
           ],
         },
-        {
-          name: "投资者关系",
-          url: "http://361degrees.todayir.com",
-          target: "_blank",
-          childs: [],
-        },
-        {
-          name: "其他品牌",
-          url: "",
-          childs: [
-            {
-              name: "361°童装",
-              url: "http://www.361-kids.com/",
-            },
-          ],
-        },
-        {
-          name: "全球网点 Global",
-          url: "",
-          childs: [
-            {
-              name: "欧洲 Europe",
-              url: "http://www.361europe.com/",
-            },
-            {
-              name: "美国 United States",
-              url: "http://www.361usa.com/",
-            },
-            {
-              name: "拉丁美洲 Latin America",
-              url: "http://361LatinAmerica.com",
-            },
-            {
-              name: "喀麦隆 Cameroon",
-              url: "http://361sport.cm",
-            },
-            {
-              name: "南非 South Africa",
-              url: "http://361sport.co.za",
-            },
-          ],
-        },
       ],
+      notice: "",
+      keywords: "",
     };
   },
   mounted(){
@@ -238,7 +135,9 @@ export default {
       }catch (err){
         console.log(err);
       }
-      
+    },
+    search(e){
+      console.log("搜索", this.keywords);
     },
   },
 };

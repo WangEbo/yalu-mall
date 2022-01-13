@@ -114,8 +114,9 @@
 
     #r2 {
       .section-content {
+        position: relative;
         .banner-wrap {
-          height: 68%;
+          height: 85%;
           background-color: #666;
           position: relative;
           overflow: hidden;
@@ -124,53 +125,58 @@
               div.banner-item {
                 .view-more {
                   position: absolute;
-                  left: 100px;
+                  left: 142px;
                   top: 50%;
                   transform: translateY(-50%);
-                  width: 160px;
-                  /*no*/
-                  height: 100px;
-                  /*no*/
+                  width: 260px;/*no*/
+                  height: 150px;/*no*/
                   opacity: 0;
-                  .item-name {
+                  color: $textColor;
+                  .item-eng-name, .item-name {
                     top: 0;
-                    font-size: 32px;
-                    /*no*/
-                    color: #fff;
+                    font-weight: 700;
+                    font-size: 40px;/*no*/
                     position: relative;
+                    word-break: keep-all;
+                    white-space: nowrap;
                   }
                   a {
-                    top: 0;
-                    position: relative;
+                    margin-top: 70px;
                     display: block;
                     text-align: center;
-                    width: 100%;
-                    height: 40px;
-                    /*no*/
-                    line-height: 40px;
-                    /*no*/
-                    color: #333;
-                    background-color: #fff;
+                    width: 270px;
+                    height: 74px;
+                    font-size: 40px;
+                    color: $textColor;
+                    background-color: transparent;
+                    border: 3px solid $textColor;
                     span {
                       position: relative;
-                      font-size: 18px;
                       /*no*/
                       z-index: 2;
+                      width: 100%;
+                      height: 100%;
+                      text-align: center;
+                      line-height: 1;/*no*/
+                      font-size: 40px;
                       background-color: transparent;
                     }
                     &::before {
                       content: "";
                       position: absolute;
                       z-index: 1;
-                      background-color: $activeColor;
+                      background-color: $mainTheme;
                       width: 0;
                       height: 100%;
+                      line-height: 1;
                       right: 0;
                       top: 0;
                       transition: 0.3s all ease-in;
                     }
                   }
                   a:hover {
+                    color: #fff;
+                    border-color: $mainTheme;
                     &::before {
                       width: 100%;
                     }
@@ -192,6 +198,9 @@
                   }
                 }
               }
+            }
+            .swiper-nav{
+              bottom: 10%;
             }
           }
           .swiper-index {
@@ -224,31 +233,67 @@
           }
         }
         ul.category-wrap {
-          height: 32%;
-          padding: 0 10%;
+          width: 100%;
+          height: 200px;
           display: flex;
           align-items: center;
+          padding: 0 142px;
+          position: absolute;
+          justify-content: space-between;
+          bottom: 15%;
+          z-index: 99;
+          transform: translateY(50%);
           li {
             cursor: pointer;
-            .category-box {
-              .item-img {
-                height: 65%;
-                img {
-                  display: block;
-                  width: 100%;
-                }
+            height: 150px;
+            border-radius: 5px;
+            border-radius: 4px;
+            overflow: hidden;
+            a{
+              display: block;
+              width: 100%;
+              height: 100%;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center center;
+              position: relative;
+              img {
+                display: block;
+                height: 100%;
+                opacity: 0;
               }
-              .item-name {
-                font-size: 22px;
-                line-height: 1.5;
-                font-weight: bold;
-                text-align: center;
-                margin-top: 12px;
+              
+              .cate-des{
+                z-index: 2;
+                position: absolute;
+                overflow: hidden;
+                bottom: 0;
+                width: 100%;
+                height: 0;
+                background-color: rgba(0, 0, 0, .5);
+                transition: .3s height ease-in-out;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                .inner{
+                  display: inline-block;
+                  .item-name,.item-eng-name {
+                    font-size: 20px;
+                    line-height: 1.5;
+                    font-weight: bold;
+                    text-align: center;
+                    margin-top: 12px;
+                    color: #fff;
+                  }
+                }
+                
               }
             }
-            &:hover{
-              .item-name{
-                color: $activeColor;
+            
+            a:hover{
+              
+              .cate-des{
+                height: 100%;
               }
             }
           }

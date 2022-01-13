@@ -2,66 +2,80 @@
   <footer id="foot">
     <div class="fmain">
       <div class="left">
-        <!--*<a>集团招聘</a>
-            <a>加盟</a>-->
-        <a data-dialog="pop_dialog">团购订制</a>
-        <div class="other">团购热线：{{info.telPhone}}<br>
-          大型定制联系电话:<br>{{info.largeDz}}
-        </div>
+        <h4>团队定制信息</h4>
+        <h6>团购定制信息</h6>
+        <a class="able-link" v-for="tel in info.telPhone" :key="tel" :tel="tel">{{tel}}</a>
+        <h6>大型订购热线</h6>
+        <a class="able-link" v-for="tel in info.largeTelPhone" :key="tel" :tel="tel">{{tel}}</a>
       </div>
       <div class="mid">
+        <h4>联系我们</h4>
         <ul>
           <li>
-            <h3>QQ 客服</h3>
-            <p>{{info.qq}}</p>
+            <h6>全国服务热线</h6>
+            <a class="able-link" :tel="info.serviceTel">{{info.serviceTel}}</a>
           </li>
           <li>
-            <h3>邮编</h3>
-            <p>{{info.yb}}</p>
+            <h6>QQ 客服</h6>
+            <a class="able-link" :tel="info.qq">{{info.qq}}</a>
           </li>
           <li>
-            <h3>工作时间</h3>
-            <p>{{info.timeOfWork}}</p>
+            <h6>校园招聘</h6>
+            <a class="able-link" :href="info.schoolJobs" target="_blank">{{info.schoolJobs}}</a>
           </li>
           <li>
-            <h3>全国服务热线</h3>
-            <p>{{info.serviceTel}}</p>
+            <h6>地址</h6>
+            <p class="p-des">{{info.address}}</p>
           </li>
           <li>
-            <h3>地址</h3>
-            <p>{{info.address}}</p>
+            <h6>工作时间</h6>
+            <p class="p-des">{{info.timeOfWork}}</p>
           </li>
           <li>
-            <h3>校园招聘</h3>
-            <p><a href="http://campus.51job.com/361sport2020" target="_blank">{{info.schoolJobs}}</a></p>
+            <h6>邮编</h6>
+            <p class="p-des">{{info.yb}}</p>
           </li>
         </ul>
       </div>
       <div class="right">
-        <div class="inter">
-          <span>购物平台 <i class="iconfont ml-10"></i></span>
-          <div class="items" v-show="false">
+        <h4>在这里可以找到我们</h4>
+        <div class="inter-place">
+          <div class="inter">
+            <a :href="info.weibo" class="icon iconfont  icon-weibo"></a>
+          </div>
+          <div class="inter">
+            <a class="icon iconfont icon-weixin"></a>
+            <div v-show="false" class="items" style="width: 100px;">
+              <div class="shadow" style="background-color: #fff;">
+                <img src="templates/dist/img/wx.jpg" class="wid-100">
+                <div class="f-center mt-4 pb-4">关注我们</div>
+              </div>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="f-bottom">
+      <div class="left">
+        <img src="/img/bm-logo.png" alt="">
+      </div>
+      <div class="mid">
+        <p class="p-des">
+          中国安备号4299999239940 <br>雅鹿股份有限公司
+        </p>
+      </div>
+      <div class="right">
+        <div class="shop-platforms">
+          <span>购物平台 <i class="icon iconfont icon-arrow-right"></i></span>
+          
+          <div class="items">
             <ul>
               <li v-for="(item,i) in info.salePlatform" :key="i"><a :href="item.href" target="_blank">{{item.name}}</a></li>
             </ul>
             <span></span>
           </div>
-        </div>
-        <div class="inter">
-          <a :href="info.weibo" class="icon iconfont  icon-weibo"></a>
-        </div>
-        <div class="inter">
-          <a class="icon iconfont icon-weixin"></a>
-          <div v-show="false" class="items" style="width: 100px;">
-            <div class="shadow" style="background-color: #fff;">
-              <img src="templates/dist/img/wx.jpg" class="wid-100">
-              <div class="f-center mt-4 pb-4">关注我们</div>
-            </div>
-            <span></span>
-          </div>
-        </div>
-        <div class="other wid-100 f-center d-gc">
-          <a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">中国 闽ICP备05003868号-1</a><br>©2019三六一度(中国)有限公司 All Rights Reserved
         </div>
       </div>
     </div>
@@ -69,12 +83,16 @@
 </template>
 
 <script>
+
+require("../../assets/imgs/bm-logo.png");
 export default {
   name: "YFooter",
   data(){
     return {
       info: {
+        telPhone: [""],
         salePlatform: [{}],
+        largeTelPhone: [""],
       },
     };
   },
@@ -85,7 +103,8 @@ export default {
     getFooterInfo(){
       setTimeout(()=> {
         this.$set(this, "info", {
-          telPhone: "0592-3790176",
+          telPhone: ["0592-3790176"],
+          largeTelPhone: ["0592-3790176"],
           largeDz: "18259437972",
           qq: "476849964",
           yb: "361009",

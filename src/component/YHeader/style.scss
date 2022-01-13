@@ -1,13 +1,17 @@
-header {
+.y-header {
   position: fixed;
-  height: 90px;
   width: 100%;
   z-index: 1000;
   transition: all 0.3s ease-in-out;
-  .nav {
+  background-color: #fff;
+  .notice{
+    height: 36px;
+    background-color: $textColor;
+  }
+  .nav-wrap {
+    height: 90px;
     z-index: 10;
     width: 100%;
-    height: 100%;
     padding: 0 4%;
     transition: all 0.3s ease-in-out;
     display: flex;
@@ -34,7 +38,7 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      li {
+      li.go-down {
         text-align: center;
         height: 100%;
         display: flex;
@@ -45,7 +49,7 @@ header {
           text-align: center;
           line-height: 90px;
           font-size: 18px;
-          color: #fff;
+          color: $textColor;
           transition: all 0.3s ease-in-out;
           position: relative;
           font-weight: bolder;
@@ -55,7 +59,7 @@ header {
             position: absolute;
             width: 100%;
             height: 3px;
-            background-color: $activeColor;
+            background-color: $mainTheme;
             bottom: 0;
             left: 0;
             opacity: 0;
@@ -64,13 +68,13 @@ header {
         }
         .out-nav {
           position: absolute;
-          left: 0;
+          left: 50%;
           visibility: hidden;
           pointer-events: none;
           top: 99%;
           opacity: 0;
-          transform: translateY(-5px);
-          transition: all 0.3s ease-in-out;
+          transform: translateY(-5px) translateX(-50%);
+          transition: all .3s ease-in-out;
           span {
             height: 20px;
             line-height: 20px;
@@ -85,8 +89,9 @@ header {
               border-style: solid;
               border-width: 8px;
               border-color: transparent transparent #fff transparent;
-              left: 20px;
+              left: 50%;
               bottom: 0;
+              transform: translateX(-50%);
             }
           }
           .items {
@@ -94,8 +99,10 @@ header {
             justify-content: space-between;
             align-items: stretch;
             background-color: #f0f0f0;
+            border-radius: 4px;
             .right {
-              padding: 16px 24px;
+              border-radius: 4px;
+              padding: 12px;
               background-color: #fff;
               min-width: 130px;
               display: flex;
@@ -106,7 +113,7 @@ header {
                 font-size: 14px;
                 display: block;
                 margin: 5px auto;
-                padding: 0 10px;
+                padding: 3px 8px;
                 white-space: nowrap;
                 transition: all 0.3s ease-in-out;
               }
@@ -116,50 +123,76 @@ header {
         &:hover {
           visibility: visible;
           > a {
-            color: $activeColor !important;
+            color: $mainTheme !important;
             &:after {
               opacity: 1;
             }
+          }
+          .out-nav {
+            pointer-events: auto;
+            opacity: 1;
+            transform: translateX(-50%);
+            visibility: visible;
           }
         }
         &.on {
           > a {
-            color: $activeColor !important;
+            color: $mainTheme !important;
             &:after {
               opacity: 1;
             }
           }
         }
-        &.go-down {
-          &:hover {
-            .out-nav {
-              pointer-events: auto;
-              opacity: 1;
-              transform: none;
-              visibility: visible;
-            }
-          }
-        }
+        
+      }
+      li+li::before{
+        content: '';
+        position: absolute;
+        left: -24px;
+        top: 50%;
+        width: 2px;
+        height: 20%;
+        background-color: rgb(161, 161, 161);
+        transform: translateY(-50%) skew(-20deg);
       }
     }
   }
   .go-search {
     position: relative;
     z-index: 5;
+    width: 260px;
+    position: relative;
+    .search-input{
+      width: 75%;
+      border-radius: 18px;
+      height: 36px;
+      border: 1px solid $textColor;
+      padding-right: 40px;
+      float: right;
+      &:focus{
+        width: 100%;
+      }
+      transition: .3s all ease-in-out;
+    }
     a {
-      color: #fff;
-      border-color: #fff;
-      border-width: 1px;
-      border-style: solid;
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      line-height: 30px;
+      color: $textColor;
+      border-color: $textColor;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
       text-align: center;
-      &:hover {
-        color: $activeColor !important;
-        border-color: $activeColor !important;
+      position: absolute;
+      font-size: 20px;
+      right: 2px;
+      top: 0;
+    }
+    &:hover {
+      a{
+        color: $mainTheme !important;
+        border-color: $mainTheme !important;
+      }
+      .search-input{
+        border-color: $mainTheme;
       }
     }
   }
@@ -178,7 +211,7 @@ header {
     .layout-search {
       display: inline-block;
       position: relative;
-      border-bottom: 1px solid $activeColor;
+      border-bottom: 1px solid $mainTheme;
       height: 40px;
       line-height: 40px;
       width: 380px;
@@ -204,7 +237,7 @@ header {
         line-height: 40px;
         width: 40px;
         text-align: center;
-        color: $activeColor;
+        color: $mainTheme;
       }
     }
     a.icon-close {
@@ -217,7 +250,7 @@ header {
       top: 50%;
       transform: translateY(-50%);
       &:hover {
-        color: $activeColor;
+        color: $mainTheme;
       }
     }
   }
@@ -342,7 +375,7 @@ header {
 
           ol {
             overflow: hidden;
-            background-color: $activeColor;
+            background-color: $mainTheme;
             transition: all .3s ease-in;
             li {
               a {
@@ -391,8 +424,8 @@ header {
     }
     .go-search {
       a {
-        color: #000;
-        border-color: #000;
+        color: $textColor;
+        border-color: $textColor;
       }
     }
     .search-wrap {
@@ -411,22 +444,22 @@ header {
   }
 }
 
-header .pc-nav > ul > li .out-nav .items .left .list .msg h3,
-header .pc-nav > ul > li .out-nav .items .left .list .msg p {
+.y-header .pc-nav > ul > li .out-nav .items .left .list .msg h3,
+.y-header .pc-nav > ul > li .out-nav .items .left .list .msg p {
   opacity: 0;
 }
 
-header .pc-nav > ul > li .out-nav .items .right > a.on,
-header .pc-nav > ul > li .out-nav .items .right > a:hover {
-  color: $activeColor;
+.y-header .pc-nav > ul > li .out-nav .items .right > a.on,
+.y-header .pc-nav > ul > li .out-nav .items .right > a:hover {
+  color: $mainTheme;
 }
 
 @media screen and (max-width: 800px) {
-  header {
+  .y-header {
     .go-search {
       display: none;
     }
-    .nav {
+    .nav-wrap {
       nav{
         display: none;
       }
@@ -434,7 +467,7 @@ header .pc-nav > ul > li .out-nav .items .right > a:hover {
         display: flex;
         span {
           &:hover {
-            background-color: $activeColor;
+            background-color: $mainTheme;
           }
         }
       }

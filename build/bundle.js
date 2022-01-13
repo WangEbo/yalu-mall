@@ -8,6 +8,7 @@ const entryDir = resolve("src/page")
 const outputDir = resolve("dist")
 const templatePath = resolve("template/index.html")
 const entryFiles = fs.readdirSync(entryDir)
+console.log(entryFiles);
 const
   entry = {},
   output = {}
@@ -25,7 +26,7 @@ function resolveAlias(){
 // Handle Entry and Output of Webpack
 function resolveEntryAndOutput(env){
   entryFiles.forEach(dir => {
-    entry[dir] = resolve(`${entryDir}/${dir}`)
+    entry[dir] = resolve(`${entryDir}/${dir}/index.js`)
     if(env === "dev"){
       output.filename = "js/[name].bundle.js";
     }else{
@@ -33,6 +34,7 @@ function resolveEntryAndOutput(env){
     }
     output.path = outputDir;
   })
+  console.log(entry);
 }
 
 // Handle HTML Templates

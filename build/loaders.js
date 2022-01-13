@@ -64,7 +64,8 @@ const imgLoader = {
     loader: "file-loader",
     options: {
       name: "[name].[ext]",
-      outputPath:"img"
+      // publicPath: '../dist/img/',
+      outputPath:"img/"
     }
   }
 }
