@@ -1,31 +1,42 @@
 import axios from "axios";
 
-axios.defaults.baseURL = window.env === "prod" ? window.prodBaseUrl : window.devBaseUrl;
-axios.defaults.timeout = 120000;
+// 创建axios实例
+const service = axios.create({
+  baseURL: process.env.BASE_API, // api的base_url
+  timeout: 15000, // 请求超时时间
+  headers: {},
+});
 
-export const getFetch = async (url,params = {}) => {
-  try{
-    const res = await axios.get(url,params);
-    return res;
-  }catch(e){
-    return {
-      code:-1,
-      message:e.message,
-      status:false,
-    };
+// request拦截器
+service.interceptors.request.use(config => {
+  return config;
+}, error => {
+  // Do something with request error
+  console.log(error); // for debug
+  Promise.reject(error);
+});
+
+// respone拦截器
+service.interceptors.response.use(
+  response => {
+  /**
+  * code为非200是抛错 可结合自己业务进行修改
+  */
+    const res = response.data;
+    if (res.code !== 200) {
+      // alert(`error: ${res.message}`);
+      console.log(`error: ${res.message}`);// for debug
+
+      return Promise.reject("error");
+    } else {
+      return response.data;
+    }
+  },
+  error => {
+    console.log("err" + error);// for debug
+    // alert(`error: ${error.message}`);
+    return Promise.reject(error);
   }
-};
+);
 
-export const postFetch = async (url,params = {}) => {
-  try{
-    const res = await axios.post(url,params);
-    return res;
-  }catch(e){
-    return {
-      code:-1,
-      message:e.message,
-      status:false,
-    };
-  }
-};
-
+export default service;

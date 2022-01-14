@@ -1,0 +1,139 @@
+#hsitroy-page{
+  .main-content{
+    padding-top: $headerHeight;
+    .tabs.page-nav{
+      ul{
+        display: flex;
+        li{
+            display: inline-block;
+            width: 200px;
+            height: 60px;
+            color: $textColor;
+            span.icon{
+              color: $textColor;
+            }
+          &.active{
+            background-color: $mainTheme;
+            color: #fff;
+            span.icon{
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+
+
+    .year-nav{
+      position: fixed;
+      z-index: 999;
+      min-width: 60px;
+      max-height: 60%;
+      top: 20%;
+      right: 4%;
+      text-align: center;
+      
+      .iconfont{
+        font-size: 24px;/*no*/
+        color: $textColor;
+        transform-origin: center;
+      }
+
+      .iconfont.top{
+        transform: rotate(-90deg);
+      }
+      .iconfont.bottom{
+        transform: rotate(90deg);
+      }
+
+      li.year-item{
+        font-family: en-m;
+        color: $textColor;
+        position: relative;
+        cursor: pointer;
+        text-align: center;
+        line-height: 32px;/*no*/
+        transition: .3s all ease-in-out;
+        span{
+          display: inline-block;
+          font-size: 24px;/*no*/
+          font-weight: bold;
+        }
+        &.active{
+          color: $mainTheme;
+          span{
+            font-size: 28px;/*no*/
+          }
+          span.arrow{
+            transform: translateY(-50%) translateX(-100%);
+            opacity: 1;
+            pointer-events: auto;
+          }
+        }
+        &:hover{
+          filter: drop-shadow(0 0 1px $boxShadowColor);/*no*/
+          span.arrow{
+            transform: translateY(-50%) translateX(-100%);
+            opacity: 1;
+            pointer-events: auto;
+            transition: .3s all ease-in-out;
+          }
+        }
+        span.arrow{
+          float: left;
+          border-color: transparent transparent transparent $mainTheme;
+          border-width: 8px;/*no*/
+          border-style: solid;
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%) translateX(-150%);
+          opacity: 0;
+          pointer-events: none;
+        }
+
+      }
+
+      li + li{
+        margin-top: 30px;/*no*/
+        &:before{
+          content: '';
+          position: absolute;
+          bottom: calc(100% + 2px);/*no*/
+          height: 24px;/*no*/
+          width: 2px;/*no*/
+          background-color: $lightTextColor;
+          left: calc(50% - 1px);/*no*/
+        }
+      }
+    }
+
+
+    .hisroty-list{
+      width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+
+      .list-content{
+        display: flex;
+        justify-content: space-around;
+        .list-part{
+          margin: 40px;
+          flex: 1;
+          li{
+            margin-bottom: 20px;
+            h4{
+              color: $mainTheme;
+              font-size: 16px;
+            }
+            p{
+              font-size: 14px;
+              color: $textColor;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -75,31 +75,19 @@
           opacity: 0;
           transform: translateY(-5px) translateX(-50%);
           transition: all .3s ease-in-out;
-          span {
-            height: 20px;
-            line-height: 20px;
-            position: relative;
-            width: 100%;
-            display: block;
-            &:after {
-              content: "";
-              width: 0;
-              height: 0;
-              position: absolute;
+          .items {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            filter: drop-shadow(0 0 3px $boxShadowColor);
+            span {
+              display: inline-block;
               border-style: solid;
               border-width: 8px;
               border-color: transparent transparent #fff transparent;
-              left: 50%;
-              bottom: 0;
-              transform: translateX(-50%);
             }
-          }
-          .items {
-            display: flex;
-            justify-content: space-between;
-            align-items: stretch;
-            background-color: #f0f0f0;
-            border-radius: 4px;
             .right {
               border-radius: 4px;
               padding: 12px;
@@ -109,6 +97,7 @@
               flex-direction: column;
               justify-content: center;
               align-items: flex-start;
+             
               a {
                 font-size: 14px;
                 display: block;

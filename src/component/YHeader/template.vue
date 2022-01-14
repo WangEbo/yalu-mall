@@ -10,8 +10,8 @@
           <li class="go-down"  v-for="(item,i) in menus" :key="i">
             <a class="menu-level-1">{{item.name}}</a>
             <div class="out-nav" v-if="item.childs && item.childs.length">
-              <span></span>
               <div class="items">
+                <span></span>
                 <div class="right">
                   <a v-for="(child, cIndex) in item.childs" :key="cIndex" class="_hover" :href="child.url || 'javascript: void(0)'">{{child.name}}</a>
                 </div>
