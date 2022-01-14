@@ -61,7 +61,7 @@
         <section id="r3" class="section part">
           <div class="section-content">
             <div class="banner-wrap">
-              <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="false" :delay="2000"  @swiperChange="r3SwiperChange">
+              <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r3BannerList" :key="i">
                   <a class="banner-item" :href="`./timeInfoDetail.html?id=${item.r3_value}`">
                     <div class="col1"  :style="{'background-image': `url(${item.r3_src})`}">
