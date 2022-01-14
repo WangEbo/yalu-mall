@@ -259,35 +259,27 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: space-between;
-    height: 20px;
-    /*no*/
+    height: 20px;/*no*/
     position: absolute;
-    top: 24px;
-    /*no*/
+    top: 24px;/*no*/
     bottom: 0;
-    right: 24px;
-    /*no*/
+    left: 24px;/*no*/
     z-index: 13;
     display: none;
     span {
-      background-color: #fff;
-      height: 2px;
-      /*no*/
-      border-radius: 50px;
-      /*no*/
+      background-color: $textColor;
+      height: 2px;/*no*/
+      border-radius: 50px;/*no*/
       transition: all 0.3s ease-in-out;
       transition: all 1s ease-in-out;
       &:nth-of-type(1) {
-        width: 25px;
-        /*no*/
+        width: 25px;/*no*/
       }
       &:nth-of-type(2) {
-        width: 25px;
-        /*no*/
+        width: 25px;/*no*/
       }
       &:nth-of-type(3) {
-        width: 25px;
-        /*no*/
+        width: 25px;/*no*/
       }
     }
     &.on {
@@ -313,7 +305,7 @@
 
   .nav-app {
     position: fixed;
-    right: 0;
+    left: 0;
     top: 0;
     z-index: 10000;
     width: 0;
@@ -335,21 +327,20 @@
       height: 100%;
       width: 60%;
       transition: all 0.3s ease-in-out;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      -ms-transition: all 0.3s ease-in-out;
-      transform: translateX(100%);
-      background-color: rgba(0, 0, 0, 0.92);
+      transform: translateX(-100%);
+      background-color: #fff;
       top: 0;
-      right: 0;
+      left: 0;
       z-index: 5;
+      color: $textColor;
+      a, i{
+        color: $textColor;
+      }
       ul {
         padding-top: 36px;
         li {
           position: relative;
           i {
-            color: #fff;
             height: 44px; /*no*/
             line-height: 44px; /*no*/
             position: absolute;
@@ -365,11 +356,10 @@
             text-shadow: none;
             display: inline-block;
             width: 100%;
-            color: #fff;
             height: 44px; /*no*/
             line-height: 44px; /*no*/
             font-weight: bold;
-            font-size: 14px; /*no*/
+            font-size: 18px; /*no*/
             padding: 0 24px; /*no*/
           }
 
@@ -377,16 +367,18 @@
             overflow: hidden;
             background-color: $mainTheme;
             transition: all .3s ease-in;
+            background: inherit;
             li {
               a {
                 width: 100%;
                 display: inline-block;
-                color: #fff;
                 height: 38px; /*no*/
                 line-height: 38px; /*no*/
                 padding: 0 24px; /*no*/
                 text-indent: 10px; /*no*/
                 opacity: 0.9;
+                font-size: 14px;/*no*/
+                // font-weight: normal;
               }
             }
           }
@@ -456,8 +448,49 @@
 
 @media screen and (max-width: 800px) {
   .y-header {
-    .go-search {
+    .nav-wrap{
+      height: 60px;/*no*/
+      position: relative;
+    }
+    .logo-box{
+      margin: 0 auto;
+    }
+    .notice{
       display: none;
+    }
+    .go-search {
+      padding: 13px 10px;/*no*/
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: .3s all ease-in;
+      a.icon{
+        position: absolute;
+        right: 32px;/*no*/
+        top: 50%;/*no*/
+        font-size: 20px;/*no*/
+        transform: translateY(-50%);
+      }
+      .search-input{
+        width: 34px;/*no*/
+        height: 34px;/*no*/
+        border: 0;
+        border-radius: 17px;/*no*/
+        padding: 3px 8px;/*no*/
+        font-size: 16px;/*no*/
+        color: $textColor;
+      }
+      &:hover{
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        align-items: center;
+        z-index: 25;
+        .search-input{
+          width: 100%;
+          border: 1px solid $textColor;/*no*/
+        }
+      }
     }
     .nav-wrap {
       nav{

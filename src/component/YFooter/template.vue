@@ -3,21 +3,25 @@
     <div class="fmain">
       <div class="left">
         <h4>团队定制信息</h4>
-        <h6>团购定制信息</h6>
-        <a class="able-link" v-for="tel in info.telPhone" :key="tel" :tel="tel">{{tel}}</a>
-        <h6>大型订购热线</h6>
-        <a class="able-link" v-for="tel in info.largeTelPhone" :key="tel" :tel="tel">{{tel}}</a>
+        <div>
+          <h6>团购热线</h6>
+          <a class="able-link" v-for="tel in info.telPhone" :href="`tel:${tel}`" :key="tel" >{{tel}}</a>
+        </div>
+        <div> 
+          <h6>大型订购热线</h6>
+          <a class="able-link" v-for="tel in info.largeTelPhone" :key="tel"  :href="`tel:${tel}`" >{{tel}}</a>
+        </div>  
       </div>
       <div class="mid">
         <h4>联系我们</h4>
         <ul>
           <li>
             <h6>全国服务热线</h6>
-            <a class="able-link" :tel="info.serviceTel">{{info.serviceTel}}</a>
+            <a class="able-link"  :href="`tel:${info.serviceTel}`" >{{info.serviceTel}}</a>
           </li>
           <li>
             <h6>QQ 客服</h6>
-            <a class="able-link" :tel="info.qq">{{info.qq}}</a>
+            <a class="able-link">{{info.qq}}</a>
           </li>
           <li>
             <h6>校园招聘</h6>
@@ -76,6 +80,34 @@
             </ul>
             <span></span>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-inter">
+      <div class="inter-place">
+        <div class="inter">
+          <a :href="info.weibo" class="icon iconfont  icon-weibo"></a>
+        </div>
+        <div class="inter">
+          <a class="icon iconfont icon-weixin"></a>
+          <div v-show="false" class="items" style="width: 100px;">
+            <div class="shadow" style="background-color: #fff;">
+              <img src="templates/dist/img/wx.jpg" class="wid-100">
+              <div class="f-center mt-4 pb-4">关注我们</div>
+            </div>
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <div class="shop-platforms">
+        <span>购物平台 <i class="icon iconfont icon-arrow-right"></i></span>
+        
+        <div class="items">
+          <ul>
+            <li v-for="(item,i) in info.salePlatform" :key="i"><a :href="item.href" target="_blank">{{item.name}}</a></li>
+          </ul>
+          <span></span>
         </div>
       </div>
     </div>

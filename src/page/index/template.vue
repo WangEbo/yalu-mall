@@ -16,18 +16,16 @@
               </y-swiper>
             </div>
           </div>
+          <span class="scr pc">
+            <em class="wc en-m">查看更多</em><small></small>
+          </span>
         </section>
         <section id="r2" class="section part">
           <div class="section-content">
             <div class="banner-wrap">
-              <y-swiper ref="r2Swiper" :autoPlay="false" :delay="2000" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
+              <y-swiper ref="r2Swiper" :autoPlay="true" :delay="2000" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r2BannerList" :key="i">
                   <div class="banner-item" :style="{'background-image': `url(${item.r2_src})`}">
-                    <div class="view-more">
-                      <p class="item-eng-name">{{item.r2_englishName}}</p>
-                      <p class="item-name">{{item.r2_name}}</p>
-                      <a :href="`./category.html?id=${item.r2_value}`"><span>新品速递</span></a>
-                    </div>
                   </div>
                 </y-swiper-slide>
                 <ul class="swiper-nav">
@@ -51,12 +49,19 @@
                 </a>
               </li>
             </ul>
+            <div v-for="(item, i) in r2BannerList" :key="i" :class="['view-more', r2ActiveIndex == i ? 'active':'']">
+              <div class="more-box">
+                <p class="item-eng-name">{{item.r2_englishName}}</p>
+                <p class="item-name">{{item.r2_name}}</p>
+                <a :href="`./category.html?id=${item.r2_value}`"><span>新品速递</span></a>
+              </div>
+            </div>
           </div>
         </section>
         <section id="r3" class="section part">
           <div class="section-content">
             <div class="banner-wrap">
-              <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
+              <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="false" :delay="2000"  @swiperChange="r3SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r3BannerList" :key="i">
                   <a class="banner-item" :href="`./timeInfoDetail.html?id=${item.r3_value}`">
                     <div class="col1"  :style="{'background-image': `url(${item.r3_src})`}">
@@ -81,9 +86,6 @@
         <section id="r4" class="section">
           <y-footer></y-footer>
         </section>
-        <span class="scr pc">
-          <em class="wc en-m">查看更多</em><small></small>
-        </span>
       </div>
       
     </article>

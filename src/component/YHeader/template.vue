@@ -31,14 +31,14 @@
         <span></span>
       </div>
       <div class="nav-app app" :class="{on: appOn}">
-        <div class="mask"></div>
+        <div class="mask" @click="appOn = false"></div>
         <div class="child">
           <ul>
             <li @click="showChild(item)" :class="{active: item.active}" class="go-child"  v-for="(item,i) in menus" :key="i">
               <div>
-                <a>{{item.name}}</a><i class="icon iconfont icon-arrow-right"></i>
+                <a>{{item.name}}</a><i  v-show="item.childs && item.childs.length" class="icon iconfont icon-arrow-right"></i>
               </div>
-              <ol v-show="item.childs" class="nav-down" :style="{height: item.active ? (item.childs && item.childs.length) * 38 +'px' : '0'}">
+              <ol v-show="item.childs && item.childs.length" class="nav-down" :style="{height: item.active ? (item.childs && item.childs.length) * 38 +'px' : '0'}">
                 <li v-for="(child, cIndex) in item.childs" :key="cIndex"><a :href="child.url || 'javascript: void(0)'" :target="child.target || '_self'">{{child.name}}</a></li>
               </ol>
             </li>
