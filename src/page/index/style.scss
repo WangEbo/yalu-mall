@@ -95,6 +95,7 @@
                   .view-more {
                     opacity: 1;
                     transition: 0.3s all ease-in;
+                    z-index: 100;
                     .item-name,
                     a {
                       transition: 0.3s all ease-in;

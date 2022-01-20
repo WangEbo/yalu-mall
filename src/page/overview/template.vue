@@ -6,17 +6,19 @@
       <BrandNav :activeName="'overview'"></BrandNav>
       <div class="overview-content">
         <ul>
-          <li v-for="item in list" class="view-item" :key="item">
-            <div class="img-wrap" :style="{ 'background-image': item.imgUrl }"></div>
-            <div>
-              {{item.content}}
+          <li v-for="(item, i) in list" class="view-item" :key="i">
+            <div class="img-wrap" :style="{ 'background-image': item.imgUrl }">
+              <img :src="item.imgUrl" alt="">
+            </div>
+            <div class="overview-item">
+              <h4>{{item.title}}</h4>
+              <p>{{item.content}}</p>
             </div>
           </li>
         </ul>
       </div>
     </div>
     <y-footer></y-footer>
-    <div v-show="false">{{showList}}</div>
   </div>
 </template>
 <script>
@@ -29,12 +31,12 @@ import YHeader from "@component/YHeader";
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 
-import { overviewList } from "@model/overview";
+import { getOverviewList } from "@model/overview";
 
 require("../../assets/imgs/banner/banner1.png");
 export default {
   components: {
-    YHeader, YFooter, YNewsCard, BrandNav,
+    YHeader, YFooter, BrandNav,
   },
   created() {
 
@@ -58,33 +60,8 @@ export default {
   },
   methods: {
     getList() {
-      overviewList().then(res => {
-
-      });
-      setTimeout(() => {
-        this.list = [
-          {
-            title: "",
-            content: "",
-            imgUrl: "",
-          },
-          {
-            time: "",
-            content: "",
-            imgUrl: "",
-          },
-          {
-            time: "",
-            content: "",
-            imgUrl: "",
-          },
-          {
-            time: "",
-            content: "",
-            imgUrl: "",
-          },
-        ];
-        this.$set(this, "activeYear", this.list[0]);
+      getOverviewList().then(res => {
+        this.list = res.data.list;
       });
     },
   },

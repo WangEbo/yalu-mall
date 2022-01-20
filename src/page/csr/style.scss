@@ -19,136 +19,63 @@
 }
 
 
-#hsitroy-page{
+#csr-page{
   .main-content{
     padding-top: $headerHeight;
-
-
-    .year-nav{
-      position: fixed;
-      z-index: 999;
-      min-width: 60px;
-      max-height: 60%;
-      top: 20%;
-      right: 330px;
-      text-align: center;
-      animation: upAndDownLoop 1.2s cubic-bezier(0.56, 0.01, 0.46, 1) infinite alternate;
-      
-      .iconfont{
-        font-size: 24px;/*no*/
-        color: $textColor;
-        transform-origin: center;
-      }
-
-      .iconfont.top{
-        transform: rotate(-90deg);
-      }
-      .iconfont.bottom{
-        transform: rotate(90deg);
-      }
-
-      li.year-item{
-        font-family: en-m;
-        color: $textColor;
-        position: relative;
-        cursor: pointer;
-        text-align: center;
-        line-height: 32px;/*no*/
-        transition: .3s all ease-in-out;
-        span{
-          display: inline-block;
-          font-size: 24px;/*no*/
-          font-weight: bold;
-        }
-        &.active{
-          color: $mainTheme;
-          span{
-            font-size: 28px;/*no*/
-          }
-          span.arrow{
-            transform: translateY(-50%) translateX(-100%);
-            opacity: 1;
-            pointer-events: auto;
-          }
-        }
-        &:hover{
-          filter: drop-shadow(0 0 1px $boxShadowColor);/*no*/
-          span.arrow{
-            transform: translateY(-50%) translateX(-100%);
-            opacity: 1;
-            pointer-events: auto;
-            transition: .3s all ease-in-out;
-          }
-        }
-        span.arrow{
-          float: left;
-          border-color: transparent transparent transparent $mainTheme;
-          border-width: 8px;/*no*/
-          border-style: solid;
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%) translateX(-150%);
-          opacity: 0;
-          pointer-events: none;
-        }
-
-      }
-
-      li + li{
-        margin-top: 30px;/*no*/
-        &:before{
-          content: '';
-          position: absolute;
-          bottom: calc(100% + 2px);/*no*/
-          height: 24px;/*no*/
-          width: 2px;/*no*/
-          background-color: $lightTextColor;
-          left: calc(50% - 1px);/*no*/
-        }
-      }
-    }
-
-
-    .hisroty-list{
-      width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      position: relative;
-      
-      .list-bg{
-        font-size: 450px;
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        letter-spacing: 20px;
-        pointer-events: none;
-        width: 100%;
-        text-align: center;
-        height: 450px;
-        line-height: 400px;
-        color: #f7f7f7;
-        animation: fadeIn 0.5s ease-in-out;
-      }
-
-      .list-content{
+  }
+  .csr-content{
+    margin: 0 10%;
+    ul{
+      li{
         display: flex;
+        flex-direction: row;
         justify-content: space-around;
-        background: transparent;
-        .list-part{
-          margin: 40px;
-          flex: 1;
-          li{
-            margin-bottom: 20px;
-            h4{
-              color: $mainTheme;
-              font-size: 16px;
-            }
-            p{
-              font-size: 14px;
-              color: $textColor;
-              font-weight: bold;
-            }
+        margin-bottom: 70px;
+        &:nth-child(2n+1){
+          flex-direction: row-reverse;
+        }
+        .img-wrap{
+          width: 40%;
+          height: auto;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          img{
+            display: block;
+            width: 100%;
+          }
+        }
+
+        .csr-item{
+          width: 40%;
+          h4{
+            font-size: 30px;
+            line-height: 36px;
+            margin-bottom: 10px;
+          }
+          p{
+            font-size: 14px;
+            color: $textColor;
+          }
+        }
+      }
+
+      @media screen and (max-width: 800px){
+        li {
+          flex-wrap: wrap-reverse;
+          .img-wrap, .csr-item{
+            width: 80%;
+          }
+          .csr-item{
+            margin-bottom: 30px;
+          }
+        }
+      }
+      @media screen and (max-width: 500px){
+        li {
+          flex-wrap: wrap-reverse;
+          .img-wrap, .csr-item{
+            width: 100%;
           }
         }
       }

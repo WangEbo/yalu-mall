@@ -25,7 +25,7 @@
             <div class="banner-wrap">
               <y-swiper ref="r2Swiper" :autoPlay="true" :delay="2000" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r2BannerList" :key="i">
-                  <div class="banner-item" :style="{'background-image': `url(${item.coverImg})`}">
+                  <div class="banner-item" :style="{'background-image': `url(${item.pic})`}">
                   </div>
                 </y-swiper-slide>
                 <ul class="swiper-nav">
@@ -38,12 +38,12 @@
             </div>
             <ul  class="category-wrap">
               <li v-for="(item, i) in r2BannerList" :key="i">
-                <a :href="`./category.html?id=${item.id}`" :style="{'background-image': `url(${item.coverImg})`}">
+                <a :href="`./category.html?id=${item.id}`" :style="{'background-image': `url(${item.pic})`}">
                   <img :src="item.coverImg" alt="">
                   <div class="cate-des">
                     <div class="inner">
-                      <p class="item-eng-name">{{item.r2_englishName}}</p>
-                      <div class="item-name">{{item.name}}</div>
+                      <p class="item-eng-name">{{item.relation.r2_englishName}}</p>
+                      <div class="item-name">{{item.relation.name}}</div>
                     </div>
                   </div>
                 </a>
@@ -51,8 +51,8 @@
             </ul>
             <div v-for="(item, i) in r2BannerList" :key="i" :class="['view-more', r2ActiveIndex == i ? 'active':'']">
               <div class="more-box">
-                <p class="item-eng-name">{{item.r2_englishName}}</p>
-                <p class="item-name">{{item.name}}</p>
+                <p class="item-eng-name">{{item.relation.r2_englishName}}</p>
+                <p class="item-name">{{item.relation.name}}</p>
                 <a :href="`./category.html?id=${item.id}`"><span>新品速递</span></a>
               </div>
             </div>
@@ -64,11 +64,11 @@
               <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r3BannerList" :key="i">
                   <a class="banner-item" :href="`./timeInfoDetail.html?id=${item.r3_value}`">
-                    <div class="col1"  :style="{'background-image': `url(${item.r3_src})`}">
+                    <div class="col1"  :style="{'background-image': `url(${item.pic})`}">
                       <!-- <img src="../../assets/imgs/768-557.png" alt=""> -->
                     </div>
                     <div class="col2">
-                      <y-news-card :infoItem="item"></y-news-card>
+                      <y-news-card :infoItem="item.relation"></y-news-card>
                     </div>
                   </a>
                 </y-swiper-slide>
@@ -78,7 +78,7 @@
               </y-swiper>
             </div>
             <ul class="bottom-bg">
-              <li :class="{active: r3ActiveIndex == i}" v-for="(item, i) in r3BannerList" :key="i" :style="{'background-image': `url(${item.r3_src})`}"></li>
+              <li :class="{active: r3ActiveIndex == i}" v-for="(item, i) in r3BannerList" :key="i" :style="{'background-image': `url(${item.pic})`}"></li>
               <div class="mask-cover"></div>
             </ul>
           </div>
@@ -119,7 +119,6 @@ export default {
     YHeader, YSwiper, YSwiperSlide, YFooter, YNewsCard,
   },
   created() {
-    this.getInitialFetch();
     this.getR1BannerList();
     this.getR2BannerList();
     this.getR3BannerList();
@@ -134,19 +133,23 @@ export default {
       ],
       r2BannerList: [
         {
-          coverImg: "",
-          name: "",
-          r2_englishName: "",
+          pic: "",
+          relation: {
+            coverImg: "",
+            name: "",
+            r2_englishName: "",
+          },
           id: "",
         },
       ],
       r3BannerList: [
         {
-          r3_src: "",
-          r3_name: "",
-          r3_title: "",
-          r3_value: "",
-          r3_des: "",
+          pic: "",
+          id: "",
+          relation: {
+            title: "",
+            intro: "",
+          },
         },
       ],
       headerBlackTheme: false,
@@ -170,10 +173,6 @@ export default {
       }
       console.error("n is not a number");
       return 0;
-    },
-    async getInitialFetch() {
-      const res = await getFetchTest();
-      this.test = res;
     },
     initFullPage(){
       let self = this;
@@ -204,19 +203,19 @@ export default {
     swiperJump(swiperName ,i){
       this.$refs[swiperName] && this.$refs[swiperName].jumpTo(i);
     },
-    getIndexList(){
-      getIndexList.then(res=> {
-        this.r1BannerList = ree.data;
+    getR1BannerList(){
+      getIndexList().then(res=> {
+        this.r1BannerList = res.data;
       });
     },
     getR2BannerList(){
-      getCateList.then(res=> {
-        this.r2BannerList = ree.data;
+      getCateList().then(res=> {
+        this.r2BannerList = res.data;
       });
     },
     getR3BannerList(){
-      getNewsList.then(res=> {
-        this.r3BannerList = ree.data;
+      getNewsList().then(res=> {
+        this.r3BannerList = res.data;
       });
     },
   },

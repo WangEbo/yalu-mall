@@ -23,14 +23,13 @@
   .main-content{
     padding-top: $headerHeight;
 
-
     .year-nav{
       position: fixed;
       z-index: 999;
       min-width: 60px;
       max-height: 60%;
       top: 20%;
-      right: 330px;
+      right: 15%;
       text-align: center;
       animation: upAndDownLoop 1.2s cubic-bezier(0.56, 0.01, 0.46, 1) infinite alternate;
       
@@ -140,9 +139,11 @@
           flex: 1;
           li{
             margin-bottom: 20px;
+            padding: 20px;
             h4{
               color: $mainTheme;
-              font-size: 16px;
+              font-size: 20px;
+              margin-bottom: 15px;
             }
             p{
               font-size: 14px;

@@ -1,9 +1,10 @@
 import request from "@util/request";
 
-export function getOverviewList(params) {
+export function getCsrList(params) {
   return request({
-    url:"/portal/brand-overview/list",
+    url:"/portal/brand-csr/list",
     method:"get",
     params,
   });
 }
+

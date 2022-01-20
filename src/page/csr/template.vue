@@ -1,43 +1,24 @@
 <template>
-  <div id="hsitroy-page" class="index">
+  <!-- 品牌概况 -->
+  <div id="csr-page" class="index">
     <y-header></y-header>
     <div class="main-content">
-      <BrandNav :activeName="'history'"></BrandNav>
-      <!-- 年份导航 -->
-      <div class="year-nav">
+      <BrandNav :activeName="'csr'"></BrandNav>
+      <div class="csr-content">
         <ul>
-          <i class="icon iconfont icon-arrow-right top"></i>
-          <li @click="activeYear = year" :class="['year-item', activeYear == year ? 'active' : '']" v-for="year in list" :key="year">
-            <span class="arrow"></span><span>{{year.year}}</span>
+          <li v-for="(item, i) in list" class="view-item" :key="i">
+            <div class="img-wrap" :style="{ 'background-image': item.imgUrl }">
+              <img :src="item.imgUrl" alt="">
+            </div>
+            <div class="csr-item">
+              <h4>{{item.title}}</h4>
+              <p>{{item.content}}</p>
+            </div>
           </li>
-          <i class="icon iconfont icon-arrow-right bottom"></i>
         </ul>
-      </div>
-      <!-- 历史内容 -->
-      <div class="hisroty-list">
-        <div class="list-bg">{{activeYear.year}}</div>
-        <div class="list-content">
-          <div class="list-part">
-            <ul>
-              <li v-for="(item,i) in col1" :key="i">
-                <h4>{{activeYear.year + '年' + item.month + '月'}}</h4>
-                <p>{{item.content}}</p>
-              </li>
-            </ul>
-          </div>
-          <div class="list-part">
-            <ul>
-              <li v-for="(item,i) in col2" :key="i">
-                <h4>{{activeYear.year + '年' + item.month + '月'}}</h4>
-                <p>{{item.content}}</p>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
     <y-footer></y-footer>
-    <div v-show="false">{{showList}}</div>
   </div>
 </template>
 <script>
@@ -46,48 +27,32 @@ const fullpage = require("fullpage.js");
 import "fullpage.js/dist/fullpage.css";
 
 import YHeader from "@component/YHeader";
-import YSwiper from "@component/YSwiper";
-import YSwiperSlide from "@component/YSwiperSlide";
-import YNewsCard from "@component/YNewsCard";
 
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 
-import { historyList } from "@model/history";
+import { getCsrList } from "@model/csr";
 
 require("../../assets/imgs/banner/banner1.png");
 export default {
   components: {
-    YHeader, YFooter, YNewsCard, BrandNav,
+    YHeader, YFooter, BrandNav,
   },
   created() {
 
   },
   computed: {
-    showList(){
-      let half =  Math.ceil(this.activeYear.months.length/2);
-      this.$set(this, "col1", this.activeYear.months.slice(0, half));
-      this.$set(this, "col2", this.activeYear.months.slice(half));
-      return [this.col1, this.col2];
-    },
   },
   data() {
     return {
-      activeTab: "history",
+      activeTab: "csr",
       list: [
         {
-          year: null,
-          months: [
-            { month: null, title: "", content: "" },
-          ],
+          title: "",
+          content: "",
+          imgUrl: "",
         },
       ],
-      activeYear: {
-        year: "",
-        months: [{}],
-      },
-      col1: [{}],
-      col2: [{}],
     };
   },
   mounted() {
@@ -95,58 +60,8 @@ export default {
   },
   methods: {
     getList() {
-      historyList().then(res => {
-
-      });
-      setTimeout(() => {
-        this.list = [
-          {
-            year: 2021,
-            months: [
-              { month: 1, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 2, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 3, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 4, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 5, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 6, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 7, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 8, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 9, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 10, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-            ],
-          },
-          {
-            year: 2020,
-            months: [
-              { month: 1, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 2, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 3, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 4, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 5, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 6, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 7, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 8, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 9, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 10, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-            ],
-          },
-          {
-            year: 2019,
-            months: [
-              { month: 1, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 2, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 3, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 4, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 5, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 6, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 7, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 8, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 9, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 10, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-            ],
-          },
-        ];
-        this.$set(this, "activeYear", this.list[0]);
+      getCsrList().then(res => {
+        this.list = res.data.list;
       });
     },
   },

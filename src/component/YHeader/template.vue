@@ -51,6 +51,7 @@
 
 <script>
 import { getMenu } from "@model/global";
+import { getConfig } from "@model/global";
 
 export default {
   name: "YHeader",
@@ -127,6 +128,9 @@ export default {
   },
   mounted(){
     this.getMenu();
+    getConfig().then(res=> {
+      this.logo = res.data.logo;
+    });
   },
   methods: {
     showChild(curItem){

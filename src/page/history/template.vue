@@ -7,32 +7,35 @@
       <div class="year-nav">
         <ul>
           <i class="icon iconfont icon-arrow-right top"></i>
-          <li @click="activeYear = year" :class="['year-item', activeYear == year ? 'active' : '']" v-for="year in list" :key="year">
-            <span class="arrow"></span><span>{{year.year}}</span>
+          <li @click="selectYear(year)" :class="['year-item', curYear == year ? 'active' : '']" v-for="year in list" :key="year">
+            <span class="arrow"></span><span>{{year}}</span>
           </li>
           <i class="icon iconfont icon-arrow-right bottom"></i>
         </ul>
       </div>
       <!-- 历史内容 -->
-      <div class="hisroty-list">
-        <div class="list-bg">{{activeYear.year}}</div>
-        <div class="list-content">
+      <div class="hisroty-list" :style="{'min-height': contentMinHeight}">
+        <div class="list-bg">{{curYear}}</div>
+        <div class="list-content" v-if="historyList.length">
           <div class="list-part">
             <ul>
               <li v-for="(item,i) in col1" :key="i">
-                <h4>{{activeYear.year + '年' + item.month + '月'}}</h4>
-                <p>{{item.content}}</p>
+                <h4>{{item.eventTime.substr(0, 10)}}</h4>
+                <p>{{item.eventContent}}</p>
               </li>
             </ul>
           </div>
           <div class="list-part">
             <ul>
               <li v-for="(item,i) in col2" :key="i">
-                <h4>{{activeYear.year + '年' + item.month + '月'}}</h4>
-                <p>{{item.content}}</p>
+                <h4>{{item.eventTime.substr(0, 10)}}</h4>
+                <p>{{item.eventContent}}</p>
               </li>
             </ul>
           </div>
+        </div>
+        <div v-else class="no-data">
+          暂无数据
         </div>
       </div>
     </div>
@@ -53,7 +56,7 @@ import YNewsCard from "@component/YNewsCard";
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 
-import { historyList } from "@model/history";
+import { getYears, getYearHistoryList, getHistoryById } from "@model/history";
 
 require("../../assets/imgs/banner/banner1.png");
 export default {
@@ -61,92 +64,59 @@ export default {
     YHeader, YFooter, YNewsCard, BrandNav,
   },
   created() {
-
+    this.getYears();
   },
   computed: {
     showList(){
-      let half =  Math.ceil(this.activeYear.months.length/2);
-      this.$set(this, "col1", this.activeYear.months.slice(0, half));
-      this.$set(this, "col2", this.activeYear.months.slice(half));
+      if(!this.historyList.length){
+        this.$set(this, "col1", []);
+        this.$set(this, "col2", []);
+        return [];
+      }
+      let half =  Math.ceil(this.historyList.length/2);
+      this.$set(this, "col1", this.historyList.slice(0, half));
+      this.$set(this, "col2", this.historyList.slice(half));
       return [this.col1, this.col2];
     },
   },
   data() {
     return {
       activeTab: "history",
-      list: [
-        {
-          year: null,
-          months: [
-            { month: null, title: "", content: "" },
-          ],
-        },
-      ],
-      activeYear: {
-        year: "",
-        months: [{}],
-      },
+      curYear: "",
+      historyList: [],
       col1: [{}],
       col2: [{}],
+      contentMinHeight: "",
     };
   },
   mounted() {
     this.getList();
+    this.setSize();
+    window.onresize(this.setSize);
   },
   methods: {
-    getList() {
-      historyList().then(res => {
-
+    setSize(){
+      let windowHeight = window.innerHeight;
+      this.contentMinHeight = windowHeight * 0.6 + "px";
+    },
+    getYears(){
+      getYears().then(res=> {
+        this.list = res.data;
+        this.curYear = this.list[0];
+        this.getList();
       });
-      setTimeout(() => {
-        this.list = [
-          {
-            year: 2021,
-            months: [
-              { month: 1, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 2, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 3, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 4, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 5, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 6, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 7, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 8, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 9, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 10, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-            ],
-          },
-          {
-            year: 2020,
-            months: [
-              { month: 1, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 2, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 3, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 4, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 5, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 6, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 7, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 8, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 9, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 10, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-            ],
-          },
-          {
-            year: 2019,
-            months: [
-              { month: 1, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 2, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 3, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 4, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 5, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 6, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 7, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 8, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 9, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-              { month: 10, title: "配色先后上线， 快速售罄", content: "人阿隆·戈登 签名鞋AG1「人民很行」、「一元复始」配色先后上线， 快速售罄，秉承国风古韵之美，搭载三态科技展现新生曙光。" },
-            ],
-          },
-        ];
-        this.$set(this, "activeYear", this.list[0]);
+    },
+    selectYear(year){
+      this.curYear = year;
+      this.getList();
+    },
+    getList() {
+      getYearHistoryList({
+        year: this.curYear,
+        pageNum: 1,
+        pageSize: 50,
+      }).then(res=> {
+        this.historyList = res.data.list;
       });
     },
   },

@@ -20,5 +20,65 @@
 
 
 #overview-page{
-  
+  .main-content{
+    padding-top: $headerHeight;
+  }
+  .overview-content{
+    margin: 0 10%;
+    ul{
+      li{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-bottom: 70px;
+        &:nth-child(2n+1){
+          flex-direction: row-reverse;
+        }
+        .img-wrap{
+          width: 40%;
+          height: auto;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          img{
+            display: block;
+            width: 100%;
+          }
+        }
+
+        .overview-item{
+          width: 40%;
+          h4{
+            font-size: 30px;
+            line-height: 36px;
+            margin-bottom: 10px;
+          }
+          p{
+            font-size: 14px;
+            color: $textColor;
+          }
+        }
+      }
+
+      @media screen and (max-width: 800px){
+        li {
+          flex-wrap: wrap-reverse;
+          .img-wrap, .overview-item{
+            width: 80%;
+          }
+          .overview-item{
+            margin-bottom: 30px;
+          }
+        }
+      }
+      @media screen and (max-width: 500px){
+        li {
+          flex-wrap: wrap-reverse;
+          .img-wrap, .overview-item{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
