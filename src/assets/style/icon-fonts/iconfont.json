@@ -6,6 +6,62 @@
   "description": "雅鹿服饰官网",
   "glyphs": [
     {
+      "icon_id": "1176911",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e6ee",
+      "unicode_decimal": 59118
+    },
+    {
+      "icon_id": "1883238",
+      "name": "商品类别",
+      "font_class": "category",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "3878676",
+      "name": "新闻",
+      "font_class": "news",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "4784097",
+      "name": "历史",
+      "font_class": "history",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "4893862",
+      "name": "轮询",
+      "font_class": "carousel",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "9770416",
+      "name": "overview",
+      "font_class": "overview",
+      "unicode": "e697",
+      "unicode_decimal": 59031
+    },
+    {
+      "icon_id": "11903726",
+      "name": "setting",
+      "font_class": "set",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "16728169",
+      "name": "服务",
+      "font_class": "csr",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
       "icon_id": "15838431",
       "name": "arrow-right",
       "font_class": "arrow-right",

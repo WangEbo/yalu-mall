@@ -1,0 +1,41 @@
+
+.tabs.page-nav {
+  margin: 30px 0 30px 420px;
+
+  ul {
+    display: flex;
+    li {
+      a {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 200px;
+        height: 60px;
+        padding: 5px;
+        box-sizing: content-box;
+        line-height: 60px;
+        text-align: center;
+        color: $textColor;
+        span.icon {
+          color: $textColor;
+          font-size: 30px;
+          display: inline-block;
+        }
+        .right-part {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+      &.active {
+        a{
+          background-color: $mainTheme;
+          color: #fff;
+          span.icon {
+            color: #fff;
+          }
+        }
+        
+      }
+    }
+  }
+}

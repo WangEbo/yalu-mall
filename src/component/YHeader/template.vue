@@ -3,7 +3,7 @@
     <div class="notice">{{notice}}</div>
     <div class="nav-wrap" @mouseleave="showSearch = false">
       <a href="/" title="雅鹿官方网站" class="logo-box">
-        <img src="../../assets/imgs/logo.png" alt="雅鹿官方网站">
+        <img :src="logo || '/img/logo.png'" alt="雅鹿官方网站">
       </a>
       <nav class="pc-nav pc">
         <ul>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { getMenu } from "@model/global";
 
 export default {
   name: "YHeader",
@@ -70,7 +71,7 @@ export default {
           childs: [
             {
               name: "品牌概况",
-              url: "history.html",
+              url: "overview.html",
             },
             {
               name: "品牌历程",
@@ -78,7 +79,7 @@ export default {
             },
             {
               name: "社会责任",
-              url: "responsibility.html",
+              url: "csr.html",
             },
           ],
         },
@@ -121,10 +122,11 @@ export default {
       ],
       notice: "",
       keywords: "",
+      logo: "",
     };
   },
   mounted(){
-    
+    this.getMenu();
   },
   methods: {
     showChild(curItem){
@@ -138,6 +140,11 @@ export default {
     },
     search(e){
       console.log("搜索", this.keywords);
+    },
+    getMenu(){
+      getMenu().then(res=> {
+        this.menus = res.data;
+      });
     },
   },
 };

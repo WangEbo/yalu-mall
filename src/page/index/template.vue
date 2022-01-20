@@ -8,7 +8,7 @@
             <div class="banner-wrap">
               <y-swiper ref="r1Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r1SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r1BannerList" :key="i">
-                  <div class="banner-item" :style="{'background-image': `url(${item.r1_src})`}"></div>
+                  <div class="banner-item" :style="{'background-image': `url(${item.pic})`}"></div>
                 </y-swiper-slide>
                 <ul class="swiper-nav">
                   <li :class="{active: r1ActiveIndex == i}" v-for="(item, i) in r1BannerList"  @click="swiperJump('r1Swiper',i)" :key="i"></li>
@@ -25,7 +25,7 @@
             <div class="banner-wrap">
               <y-swiper ref="r2Swiper" :autoPlay="true" :delay="2000" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r2BannerList" :key="i">
-                  <div class="banner-item" :style="{'background-image': `url(${item.r2_src})`}">
+                  <div class="banner-item" :style="{'background-image': `url(${item.coverImg})`}">
                   </div>
                 </y-swiper-slide>
                 <ul class="swiper-nav">
@@ -38,12 +38,12 @@
             </div>
             <ul  class="category-wrap">
               <li v-for="(item, i) in r2BannerList" :key="i">
-                <a :href="`./category.html?id=${item.r2_value}`" :style="{'background-image': `url(${item.r2_src})`}">
-                  <img :src="item.r2_src" alt="">
+                <a :href="`./category.html?id=${item.id}`" :style="{'background-image': `url(${item.coverImg})`}">
+                  <img :src="item.coverImg" alt="">
                   <div class="cate-des">
                     <div class="inner">
                       <p class="item-eng-name">{{item.r2_englishName}}</p>
-                      <div class="item-name">{{item.r2_name}}</div>
+                      <div class="item-name">{{item.name}}</div>
                     </div>
                   </div>
                 </a>
@@ -52,8 +52,8 @@
             <div v-for="(item, i) in r2BannerList" :key="i" :class="['view-more', r2ActiveIndex == i ? 'active':'']">
               <div class="more-box">
                 <p class="item-eng-name">{{item.r2_englishName}}</p>
-                <p class="item-name">{{item.r2_name}}</p>
-                <a :href="`./category.html?id=${item.r2_value}`"><span>新品速递</span></a>
+                <p class="item-name">{{item.name}}</p>
+                <a :href="`./category.html?id=${item.id}`"><span>新品速递</span></a>
               </div>
             </div>
           </div>
@@ -103,7 +103,9 @@ import YNewsCard from "@component/YNewsCard";
 
 import YFooter from "@component/YFooter";
 
-import { getFetchTest } from "@model/index";
+import { getIndexList, getCateList, getNewsList } from "@model/carousel";
+
+
 
 require("../../assets/imgs/banner/banner1.png");
 require("../../assets/imgs/banner/banner2.png");
@@ -127,13 +129,15 @@ export default {
       r1ActiveIndex: 0,
       r2ActiveIndex: 0,
       r3ActiveIndex: 0,
-      r1BannerList: [{r1_name: "",r1_src: ""}],
+      r1BannerList: [
+        {pic: ""},
+      ],
       r2BannerList: [
         {
-          r2_src: "",
-          r2_name: "",
+          coverImg: "",
+          name: "",
           r2_englishName: "",
-          r2_value: "",
+          id: "",
         },
       ],
       r3BannerList: [
@@ -200,76 +204,20 @@ export default {
     swiperJump(swiperName ,i){
       this.$refs[swiperName] && this.$refs[swiperName].jumpTo(i);
     },
-    getR1BannerList(){
-      setTimeout(()=> {
-        this.r1BannerList = [
-          {
-            r1_src: "/img/banner1.png",
-            r1_name: "",
-          },
-          {
-            r1_src: "http://www.361sport.com/upfiles/onepage/202112/1640581182461.jpg",
-            r1_name: "",
-          },
-          {
-            r1_src: "http://www.361sport.com/upfiles/onepage/202106/20210655553176233.jpeg",
-            r1_name: "",
-          },
-        ];
-      },1000);
+    getIndexList(){
+      getIndexList.then(res=> {
+        this.r1BannerList = ree.data;
+      });
     },
     getR2BannerList(){
-      this.r2BannerList = [
-        {
-          r2_src: "/img/banner2.png",
-          r2_englishName: "WOMEN’S DRESS",
-          r2_name: "女装",
-          r2_value: "",
-        },
-        {
-          r2_src: "/img/cate2.png",
-          r2_englishName: "MAN’S DRESS",
-          r2_name: "男装",
-          r2_value: "",
-        },
-        {
-          r2_src: "/img/cate3.png",
-          r2_englishName: "MEN’S DRESS",
-          r2_name: "时尚冬装",
-          r2_value: "",
-        },
-        {
-          r2_src: "/img/cate4.png",
-          r2_englishName: "C&A",
-          r2_name: "中老年装",
-          r2_value: "",
-        },
-      ];
+      getCateList.then(res=> {
+        this.r2BannerList = ree.data;
+      });
     },
     getR3BannerList(){
-      this.r3BannerList =  [
-        {
-          r3_src: "/img/banner3.png",
-          r3_name: "",
-          r3_title: "丁伍号：深耕亚运，做走向世界的民族品牌",
-          r3_value: "1",
-          r3_des: "传统服饰与现代时装融合执行董事兼总裁丁伍号接受采访，以企业领导人的视角，讲述了361°长期服务亚运会的历程。",
-        },
-        {
-          r3_src: "http://www.361sport.com/upfiles/news/202112/1639809808193.jpg",
-          r3_name: "",
-          r3_title: "361°双十一持续发力，超4亿元销售额撬动电商全渠道市场",
-          r3_des: "2021年“双十一”购物狂欢已落下帷幕，361°于今年“双十一”达成电商全渠道销售额突破4亿元，同比增长超过40%。",
-          r3_value: "2",
-        },
-        {
-          r3_src: "http://www.361sport.com/upfiles/news/202112/1640571960766.jpg",
-          r3_name: "",
-          r3_title: "三六一度(中国)有限公司执行董事兼总裁丁伍号接受采访",
-          r3_des: "三六一度(中国)有限公司执行董事兼总裁丁伍号接受采访，以企业领导人的视角，讲述了361°长期服务亚运会的历程。",
-          r3_value: "3",
-        },
-      ];
+      getNewsList.then(res=> {
+        this.r3BannerList = ree.data;
+      });
     },
   },
 };

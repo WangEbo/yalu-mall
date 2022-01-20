@@ -35,6 +35,15 @@ module.exports = function(env){
         children: false,
         hash:false,
       },
+      proxy: {
+        '/': {
+          target: 'http://47.106.213.156:48080/', 
+          changeOrigin: false,
+          // pathRewrite: {
+          //   '^/': ''
+          // }
+        }
+      },
     },
     plugins:[
       //热更新
