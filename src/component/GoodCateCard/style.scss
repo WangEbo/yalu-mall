@@ -1,0 +1,331 @@
+.cate-wrap{
+  .cate-cover-img{
+    height: 30vw;
+    @include adptiveBg;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    $childMl: 15%;
+    .cate-name-1{
+      font-size: 40px;
+      font-weight: bold;
+      color: #fff;
+      margin-left: $childMl;
+      margin-bottom: 30px;
+    }
+    .cate-tabs{
+      margin-left: $childMl;
+      ul{
+        font-size: 0;
+        li{
+          display: inline-block;
+          background-color: #fff;
+          cursor: pointer;
+          span{
+            display: inline-block;
+            padding: 4px 40px;
+            font-size: 14px;
+            line-height: 40px;
+          }
+          
+          &.active{
+            background-color: $mainTheme;
+            span{
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .cate-good-list{
+    width: 80%;
+    margin: 30px auto;
+    ul{
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      li{
+        width: 20%;
+        margin: 2.5%;
+        background-color: #fff;
+        a{
+          display: block;
+        }
+        .good-card{
+          .g-img{
+            height: 200px;
+            overflow: hidden;
+            .g-img-inner{
+              width: 100%;
+              height: 100%;
+              @include adptiveBg;
+              background-color: $contentBgColor;
+              transition: .3s all ease-in;
+            }
+          }
+          .g-info{
+            padding: 20px;
+            line-height: 28px;
+            border: 1px solid $bderColor;/*no*/
+            border-top: 0;
+            .g-name{
+              font-size: 18px;
+              font-weight: bold;
+              margin-bottom: 12px;
+            }
+            .g-cate-name{
+              font-size: 14px;
+              color: $textColor;
+              margin: 15px 0;
+              padding-bottom: 10px;
+              border-bottom: 1px solid #f9f9f9;/*no*/
+            }
+            .g-price{
+              color: $mainTheme;
+              font-weight: bold;
+              font-size: 16px;
+            }
+          }
+        }
+        &:hover{
+          box-shadow: 1px 1px 5px #f3f3f3;/*no*/
+          .good-card{
+            .g-img{
+              .g-img-inner{
+                transform: scale(1.1);
+                position: relative;
+                transform-origin: center;
+              }
+            }
+             
+          }
+        }
+      }
+    }
+
+
+    .el-empty{
+      width: 100%;
+      text-align: center;
+    }
+
+    .more{
+      text-align: center;
+      margin: 15px 0 25px 0;
+      a {
+        display: inline-block;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 5px;
+        position: relative;
+        border: 1px solid #ddd;/*no*/
+        color: $textColor;
+        span {
+          display: inline-block;
+          line-height: 30px;
+          font-size: 14px;
+          padding: 8px 25px;
+          position: relative;
+          z-index: 2;
+          background-color: transparent;
+          transition-delay: .3s;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          z-index: 1;
+          background-color: $activeColor;
+          width: 0;
+          height: 100%;
+          right: 0;
+          top: 0;
+          transition: 0.3s all ease-in;
+        }
+      }
+      a:hover {
+        color: #fff;
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+    
+  }
+}
+
+
+
+@media screen and(max-width: 800px) {
+  .cate-wrap{
+    margin-top: 60px;/*no*/
+    .cate-cover-img{
+      height: 200px;/*no*/
+      .cate-name-1{
+        font-size: 18px;/*no*/
+        margin-bottom: 15px/*no*/;
+      }
+      .cate-tabs{
+        ul{
+          li{
+            span{
+              padding: 4px 20px;/*no*/
+              font-size: 14px;/*no*/
+              line-height: 30px;/*no*/
+            }
+            
+            &.active{
+              span{
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .cate-good-list{
+      ul{
+        li{
+          width: 45%;
+          margin: 2.5%;
+          a{
+          }
+          .good-card{
+            .g-img{
+              height: 150px;/*no*/
+              .g-img-inner{
+              }
+            }
+            .g-info{
+              padding: 15px;/*no*/
+              line-height: 20px;/*no*/
+              .g-name{
+                font-size: 14px;/*no*/
+              }
+              .g-cate-name{
+                font-size: 12px;/*no*/
+              }
+              .g-price{
+                font-size: 12px;/*no*/
+              }
+            }
+          }
+          &:hover{
+            .good-card{
+              .g-img{
+                .g-img-inner{
+                }
+              }
+               
+            }
+          }
+        }
+      }
+  
+  
+      .el-empty{
+      }
+  
+      .more{
+        margin: 20px auto;/*no*/
+        a {
+          span {
+            font-size: 14px;/*no*/
+            padding: 15px 30px;/*no*/
+          }
+          &::after {
+          }
+        }
+        a:hover {
+          &::after {
+          }
+        }
+      }
+      
+    }
+  }
+}
+
+
+@media screen and(max-width: 500px) {
+  .cate-wrap{
+    margin-top: 60px;/*no*/
+    .cate-cover-img{
+      height: 150px;/*no*/
+      .cate-name-1{
+      }
+      .cate-tabs{
+        ul{
+          li{
+            span{
+            }
+            
+            &.active{
+              span{
+              }
+            }
+          }
+        }
+      }
+    }
+  
+  
+    .cate-good-list{
+      ul{
+        li{
+          width: 45%;
+          margin: 2.5%;
+          a{
+          }
+          .good-card{
+            .g-img{
+              height: 120px;/*no*/
+              .g-img-inner{
+              }
+            }
+            .g-info{
+              .g-name{
+              }
+              .g-cate-name{
+              }
+              .g-price{
+              }
+            }
+          }
+          &:hover{
+            .good-card{
+              .g-img{
+                .g-img-inner{
+                }
+              }
+               
+            }
+          }
+        }
+      }
+  
+  
+      .el-empty{
+      }
+  
+      .more{
+        margin: 20px auto;/*no*/
+        a {
+          span {
+            padding: 8px 15px;/*no*/
+          }
+          &::after {
+          }
+        }
+        a:hover {
+          &::after {
+          }
+        }
+      }
+      
+    }
+  }
+}

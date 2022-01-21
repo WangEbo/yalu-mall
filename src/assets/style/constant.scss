@@ -4,8 +4,10 @@
 }
 
 
-$activeColor: #f39800;
+$activeColor: #e60012;
 
+
+$bderColor: #f3f3f3;
 
 $textColor: #1e1e1e;
 $lightTextColor: #5f5f5f;
@@ -15,3 +17,12 @@ $mainColor: #b3000e;
 
 $headerHeight: 126px;
 $boxShadowColor: #b1b1b1;
+
+
+$contentBgColor: #f5f5f6;
+
+@mixin adptiveBg() {
+  background-size: cover;
+  background-repeat: no-repeat;  
+  background-position: center center;
+}

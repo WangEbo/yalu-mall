@@ -38,7 +38,7 @@
             </div>
             <ul  class="category-wrap">
               <li v-for="(item, i) in r2BannerList" :key="i">
-                <a :href="`./category.html?id=${item.id}`" :style="{'background-image': `url(${item.pic})`}">
+                <a :href="`./good_cate.html?id=${item.id}`" :style="{'background-image': `url(${item.pic})`}">
                   <img :src="item.coverImg" alt="">
                   <div class="cate-des">
                     <div class="inner">
@@ -53,7 +53,7 @@
               <div class="more-box">
                 <p class="item-eng-name">{{item.relation.r2_englishName}}</p>
                 <p class="item-name">{{item.relation.name}}</p>
-                <a :href="`./category.html?id=${item.id}`"><span>新品速递</span></a>
+                <a :href="`./good_cate.html?id=${item.id}`"><span>新品速递</span></a>
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
             <div class="banner-wrap">
               <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r3BannerList" :key="i">
-                  <a class="banner-item" :href="`./timeInfoDetail.html?id=${item.r3_value}`">
+                  <a class="banner-item" :href="`./newsDetail.html?id=${item.id}`">
                     <div class="col1"  :style="{'background-image': `url(${item.pic})`}">
                       <!-- <img src="../../assets/imgs/768-557.png" alt=""> -->
                     </div>
@@ -106,14 +106,6 @@ import YFooter from "@component/YFooter";
 import { getIndexList, getCateList, getNewsList } from "@model/carousel";
 
 
-
-require("../../assets/imgs/banner/banner1.png");
-require("../../assets/imgs/banner/banner2.png");
-require("../../assets/imgs/banner/banner3.png");
-require("../../assets/imgs/cate1.png");
-require("../../assets/imgs/cate2.png");
-require("../../assets/imgs/cate3.png");
-require("../../assets/imgs/cate4.png");
 export default {
   components: {
     YHeader, YSwiper, YSwiperSlide, YFooter, YNewsCard,

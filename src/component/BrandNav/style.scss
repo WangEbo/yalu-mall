@@ -10,6 +10,7 @@
       a {
         display: flex;
         flex-direction: row;
+        align-content: center;
         justify-content: space-around;
         width: 200px;/*no*/
         padding: 5px;/*no*/
@@ -44,41 +45,64 @@
 
 
 @media screen and(max-width: 800px) {
-  .tabs.page-nav {
-    height: 240px;/*no*/
-    ul{
-      li{
-        a{
-          width: 120px;/*no*/
-          line-height: 30px;/*no*/
-          span.icon {
-            font-size: 14px;
-          }
-          .right-part {
+.tabs.page-nav {
+  margin: 0 10%;
+  height: 240px;/*no*/
+  ul {
+    width: 100%;
+    justify-content: space-around;
+    li {
+      width: 32%;
+      a {
+        width: 100%;
+        span.icon {
+          font-size: 20px;/*no*/
+        }
+        .right-part {
+          p{
             font-size: 14px;/*no*/
           }
+          
         }
       }
+      &.active {
+        a{
+          span.icon {
+          }
+        }
+        
+      }
     }
+
   }
+}
   
 }
 
 @media screen and(max-width: 500px) {
   .tabs.page-nav {
-    ul{
-      li{
-        a{
-          width: 100px;/*no*/
-          line-height: 26px;/*no*/
+    ul {
+      li {
+        a {
           span.icon {
-            font-size: 12px;
+            font-size: 16px;/*no*/
           }
           .right-part {
-            font-size: 12px;/*no*/
+            p{
+              font-size: 12px;/*no*/
+            }
+            
           }
         }
+        &.active {
+          a{
+            span.icon {
+            }
+          }
+          
+        }
       }
+  
     }
   }
   

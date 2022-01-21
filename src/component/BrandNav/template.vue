@@ -46,7 +46,7 @@ export default {
         {
           name: "csr",
           engText: "responsibility",
-          text: "品牌概况",
+          text: "社会责任",
           icon: "icon-csr",
           href: "./csr.html",
         },

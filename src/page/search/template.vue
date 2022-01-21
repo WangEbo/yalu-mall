@@ -30,7 +30,7 @@ import YHeader from "@component/YHeader";
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 
-import { overviewList } from "@model/overview";
+import { getOverviewList } from "@model/overview";
 
 require("../../assets/imgs/banner/banner1.png");
 export default {
@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     getList() {
-      overviewList().then(res => {
+      getOverviewList().then(res => {
 
       });
       setTimeout(() => {

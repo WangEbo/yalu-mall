@@ -1,5 +1,5 @@
 <template>
-  <!-- 商品主页  分五类推荐 -->
+  <!-- 商品分类筛选 -->
   <div id="overview-page" class="index">
     <y-header></y-header>
     <div class="main-content">
@@ -7,7 +7,9 @@
       <div class="overview-content">
         <ul>
           <li v-for="item in list" class="view-item" :key="item">
-            <div class="img-wrap" :style="{ 'background-image': item.imgUrl }"></div>
+            <div class="img-wrap" :style="{ 'background-image': item.imgUrl }">
+              
+            </div>
             <div>
               {{item.content}}
             </div>
@@ -16,7 +18,6 @@
       </div>
     </div>
     <y-footer></y-footer>
-    <div v-show="false">{{showList}}</div>
   </div>
 </template>
 <script>
@@ -29,7 +30,7 @@ import YHeader from "@component/YHeader";
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 
-import { overviewList } from "@model/overview";
+import { getOverviewList } from "@model/overview";
 
 require("../../assets/imgs/banner/banner1.png");
 export default {
@@ -58,7 +59,7 @@ export default {
   },
   methods: {
     getList() {
-      overviewList().then(res => {
+      getOverviewList().then(res => {
 
       });
       setTimeout(() => {

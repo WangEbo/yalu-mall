@@ -1,0 +1,73 @@
+.news-detail{
+  background-color: $contentBgColor;
+  min-height: 100%;
+  position: relative;
+  .top-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50vh;
+    .pic{
+      @include adptiveBg;
+      height: 100%;
+      width: 100%;
+      filter: blur(20px);/*no*/
+      overflow: hidden;
+      transition: .3s all ease-in;
+      opacity: 0.2;
+    }
+    
+    .mask-cover{
+      
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0.1;
+      width: 100%;
+      height: 100%;
+      background: url('../../assets/imgs/mask1.png') center;
+    }
+  }
+
+  .back{
+    margin: 25vh auto 20px 20%;
+    background-color: #fff;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    a{
+      display: inline-block;
+      padding: 10px 20px;
+      text-align: center;
+      span{
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 32px;
+      }
+    }
+  }
+
+  .detail-content{
+    position: relative;
+    margin:0 20% 30px;
+    background-color: #fff;
+    padding: 40px;
+    min-height: 80vh;
+    z-index: 2;
+    .time{
+      font-size: 20px;
+      font-weight: bold;
+      color: $mainTheme;
+      margin-bottom: 20px;
+    }
+    .title{
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+}

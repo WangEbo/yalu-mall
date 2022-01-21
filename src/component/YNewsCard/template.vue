@@ -1,7 +1,9 @@
 <template>
   <div class="time-info">
     <div class="info-header">
-      <h3>品牌资讯</h3> <a href="" class="more">更多</a>
+      <h3>品牌资讯</h3>
+      <a v-if="showMore" href="" class="more">更多</a>
+      <p v-else class="info-time">{{infoItem.createTime && infoItem.createTime.substr(0, 10)}}</p>
     </div>
     <div class="info-title">
       {{infoItem.title}}
@@ -19,6 +21,10 @@ export default {
     infoItem: {
       type: Object,
       default: ()=> {},
+    },
+    showMore: {
+      type: Boolean,
+      default: ()=> true,
     },
   },
 };

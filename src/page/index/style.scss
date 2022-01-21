@@ -238,7 +238,6 @@
           left: 142px;
           top: 40%;
           width: 260px;/*no*/
-          height: 150px;/*no*/
           opacity: 0;
           color: $textColor;
           z-index: 99;
@@ -298,6 +297,7 @@
             opacity: 1;
             transform: translateY(-50%);
             transition: .3s all ease-in;
+            z-index: 100;
             .item-name,
             a {
               transition: 0.3s all ease-in;

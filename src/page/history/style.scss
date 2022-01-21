@@ -32,7 +32,7 @@
       right: 15%;
       text-align: center;
       animation: upAndDownLoop 1.2s cubic-bezier(0.56, 0.01, 0.46, 1) infinite alternate;
-      
+      background-color: #fff;
       .iconfont{
         font-size: 24px;/*no*/
         color: $textColor;
@@ -155,4 +155,85 @@
       }
     }
   }
+}
+
+
+
+
+@media screen and(max-width: 800px) {
+  #hsitroy-page{
+    .main-content{
+      padding-top: $headerHeight;
+  
+      .year-nav{
+        right: 0;
+        .iconfont{
+          font-size: 20px;/*no*/
+        }
+  
+        li.year-item{
+          line-height: 24px;/*no*/
+          span{
+            font-size: 14px;/*no*/
+          }
+          &.active{
+            span{
+              font-size: 18px;/*no*/
+            }
+            span.arrow{
+            }
+          }
+          &:hover{
+            span.arrow{
+            }
+          }
+          span.arrow{
+            float: left;
+            border-width: 8px;/*no*/
+          }
+  
+        }
+  
+        li + li{
+          margin-top: 15px;/*no*/
+          &:before{
+            bottom: calc(100% + 2px);/*no*/
+            height: 16px;/*no*/
+            width: 2px;/*no*/
+          }
+        }
+      }
+  
+  
+      .hisroty-list{
+        width: 80%;
+        .list-bg{
+          height: 60vh;
+          line-height: 60vh;
+        }
+  
+        .list-content{
+          width: 100%;
+          flex-wrap: wrap;
+          justify-content: center;
+          flex-direction: column;
+          align-content: center;
+          .list-part{
+            width: 80%;
+            li{
+              
+              h4{
+                font-size: 20px;/*no*/
+                margin-bottom: 15px;/*no*/
+              }
+              p{
+                font-size: 14px;/*no*/
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
 }
