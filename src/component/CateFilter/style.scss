@@ -1,0 +1,199 @@
+.cate-filter{
+  $pd: 50px 40px;
+  $pdHor: 40px;
+  border-left: 1px solid $bderColor;/*no*/
+
+  .h3{
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+  }
+  h4{
+    margin: 40px 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .title{
+    font-size: 18px;
+    font-weight: bold;
+    padding: $pd;
+    line-height: 50px;
+    border-bottom: 1px solid $bderColor;/*no*/
+  }
+  .cate-select{
+    padding: $pd;
+    border-bottom: 1px solid $bderColor;/*no*/
+    .el-menu{
+      border: 0;
+      .el-submenu{
+        ::v-deep .el-submenu__icon-arrow{
+          font-size: 18px;
+        }
+        .el-submenu__title{
+          .menu-cate-name{
+            font-weight: bold;
+            font-size: 18px;
+          }
+          
+        }
+        .el-menu--inline{
+          .menu-cate-name{
+            font-size: 14px;
+          }
+        }
+
+        &.is-active{
+          .el-submenu__title{
+            .menu-cate-name{
+              color: $mainTheme;
+            } 
+          }
+          .el-menu-item.is-active{
+            .menu-cate-name{
+              color: $mainTheme;
+            } 
+          }
+        }
+      }
+    }
+  }
+
+  .other-filter{
+    padding: $pd;
+    .price-filter{
+      .price-num{
+        display: flex;
+        justify-content: space-between;
+        margin: 12px 0;
+        span{
+          font-size: 14px;
+          display: inline-block;
+          color: $mainTheme;
+        }
+      }
+      .el-slider{
+        ::v-deep .el-slider__bar{
+          background-color: $mainTheme;
+        }
+        ::v-deep .el-slider__button{
+          background-color: $mainTheme;
+          border-color: #fff;
+          border-width: 2px;/*no*/
+        }
+      }
+    }
+  }
+  
+}
+
+
+
+@media screen and(max-width: 800px){
+  .cate-filter{
+    $pd: 2vh 5vw;/*no*/
+    $pdHor: 5vw;
+    border-left: 1px solid $bderColor;/*no*/
+  
+    .h3{
+      margin: 20px 0;/*no*/
+      font-size: 18px;/*no*/
+      font-weight: bold;
+    }
+    h4{
+      margin: $pdHor 0;/*no*/
+      font-size: 16px;/*no*/
+      font-weight: bold;
+    }
+    .title{
+      font-size: 14px;/*no*/
+      font-weight: bold;
+      padding: $pd;
+      line-height: 30px;/*no*/
+    }
+    .cate-select{
+      padding: $pd;
+      border-bottom: 1px solid $bderColor;/*no*/
+      .el-menu{
+        border: 0;
+        .el-submenu{
+          ::v-deep .el-submenu__icon-arrow{
+            font-size: 16px;/*no*/
+            margin: unset;
+            transform: translateY(-50%);
+          }
+          ::v-deep .el-submenu__title{
+            height: 30px;/*no*/
+            line-height: 30px;/*no*/
+            .menu-cate-name{
+              font-size: 16px;/*no*/
+            }
+          }
+          .el-menu--inline{
+            .menu-cate-name{
+              font-size: 14px;/*no*/
+            }
+          }
+          
+          .el-menu-item{
+            height: 30px;/*no*/
+            line-height: 30px;/*no*/
+          }
+          &.is-active{
+            .el-submenu__title{
+              .menu-cate-name{
+              } 
+            }
+            .el-menu-item.is-active{
+              .menu-cate-name{
+              } 
+            }
+          }
+        }
+      }
+    }
+  
+    .other-filter{
+      padding: $pd;
+      .price-filter{
+        .price-num{
+          margin: 12px 0;/*no*/
+          span{
+            font-size: 14px;/*no*/
+          }
+        }
+        .el-slider{
+          ::v-deep .el-slider__runway{
+            height: 5px;/*no*/
+            margin: 0;
+            .el-slider__bar{
+              height: 100%;
+              background-color: $mainTheme;
+            }
+            .el-slider__button-wrapper{
+              top: 50%;
+              transform: translateY(-50%);
+              height: 12px;/*no*/
+              width: 12px;/*no*/
+              .el-slider__button{
+                background-color: $mainTheme;
+                border-color: #fff;
+                border-width: 2px;/*no*/
+                height: 12px;/*no*/
+                width: 12px;/*no*/
+                
+              }
+            }
+            
+          }
+          
+        }
+      }
+
+      .opt-wrap{
+
+      }
+    }
+    
+  }
+  
+}

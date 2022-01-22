@@ -3,8 +3,9 @@
   <div id="overview-page" class="index">
     <y-header></y-header>
     <div class="main-content">
-      <BrandNav :activeName="'overview'"></BrandNav>
-      <div class="overview-content">
+      <div class="top-bg"></div>
+
+      <div class="news-content">
         <ul>
           <li v-for="item in list" class="view-item" :key="item">
             <div class="img-wrap" :style="{ 'background-image': item.imgUrl }">
@@ -21,21 +22,18 @@
   </div>
 </template>
 <script>
-
-const fullpage = require("fullpage.js");
-import "fullpage.js/dist/fullpage.css";
-
 import YHeader from "@component/YHeader";
-
 import YFooter from "@component/YFooter";
-import BrandNav from "@component/BrandNav";
 
-import { getOverviewList } from "@model/overview";
+import { getUrlQuery } from "@util/common";
+let keyword = getUrlQuery().keyword;
 
-require("../../assets/imgs/banner/banner1.png");
+import { queryGoodList } from "@model/goods";
+// import { queryGoodList } from "@model/news";
+
 export default {
   components: {
-    YHeader, YFooter, YNewsCard, BrandNav,
+    YHeader, YFooter, 
   },
   created() {
 
@@ -44,48 +42,31 @@ export default {
   },
   data() {
     return {
-      activeTab: "overview",
-      list: [
+      activeTab: "1",
+      newList: [
         {
           title: "",
           content: "",
           imgUrl: "",
         },
       ],
+      goodsList: [
+
+      ],
     };
   },
   mounted() {
-    this.getList();
+    this.getSearch();
   },
   methods: {
-    getList() {
-      getOverviewList().then(res => {
-
-      });
-      setTimeout(() => {
-        this.list = [
-          {
-            title: "",
-            content: "",
-            imgUrl: "",
-          },
-          {
-            time: "",
-            content: "",
-            imgUrl: "",
-          },
-          {
-            time: "",
-            content: "",
-            imgUrl: "",
-          },
-          {
-            time: "",
-            content: "",
-            imgUrl: "",
-          },
-        ];
-        this.$set(this, "activeYear", this.list[0]);
+    async getList() {
+      let goodRes = await queryGoodList({keyword});
+      let newRes = await queryGoodList({keyword});
+      Promise.all([goodRes, newRes]).then(res=> {
+        let gRes = res[0],
+          nRes = res[1];
+        this.$set(this, "goodsList", gRes.data);
+        this.$set(this, "newList", nRes.data);
       });
     },
   },

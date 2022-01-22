@@ -52,58 +52,6 @@
         width: 20%;
         margin: 2.5%;
         background-color: #fff;
-        a{
-          display: block;
-        }
-        .good-card{
-          .g-img{
-            height: 200px;
-            overflow: hidden;
-            .g-img-inner{
-              width: 100%;
-              height: 100%;
-              @include adptiveBg;
-              background-color: $contentBgColor;
-              transition: .3s all ease-in;
-            }
-          }
-          .g-info{
-            padding: 20px;
-            line-height: 28px;
-            border: 1px solid $bderColor;/*no*/
-            border-top: 0;
-            .g-name{
-              font-size: 18px;
-              font-weight: bold;
-              margin-bottom: 12px;
-            }
-            .g-cate-name{
-              font-size: 14px;
-              color: $textColor;
-              margin: 15px 0;
-              padding-bottom: 10px;
-              border-bottom: 1px solid #f9f9f9;/*no*/
-            }
-            .g-price{
-              color: $mainTheme;
-              font-weight: bold;
-              font-size: 16px;
-            }
-          }
-        }
-        &:hover{
-          box-shadow: 1px 1px 5px #f3f3f3;/*no*/
-          .good-card{
-            .g-img{
-              .g-img-inner{
-                transform: scale(1.1);
-                position: relative;
-                transform-origin: center;
-              }
-            }
-             
-          }
-        }
       }
     }
 
@@ -191,40 +139,8 @@
         li{
           width: 45%;
           margin: 2.5%;
-          a{
-          }
-          .good-card{
-            .g-img{
-              height: 150px;/*no*/
-              .g-img-inner{
-              }
-            }
-            .g-info{
-              padding: 15px;/*no*/
-              line-height: 20px;/*no*/
-              .g-name{
-                font-size: 14px;/*no*/
-              }
-              .g-cate-name{
-                font-size: 12px;/*no*/
-              }
-              .g-price{
-                font-size: 12px;/*no*/
-              }
-            }
-          }
-          &:hover{
-            .good-card{
-              .g-img{
-                .g-img-inner{
-                }
-              }
-               
-            }
-          }
         }
       }
-  
   
       .el-empty{
       }
@@ -272,41 +188,13 @@
       }
     }
   
-  
     .cate-good-list{
       ul{
         li{
           width: 45%;
           margin: 2.5%;
-          a{
-          }
-          .good-card{
-            .g-img{
-              height: 120px;/*no*/
-              .g-img-inner{
-              }
-            }
-            .g-info{
-              .g-name{
-              }
-              .g-cate-name{
-              }
-              .g-price{
-              }
-            }
-          }
-          &:hover{
-            .good-card{
-              .g-img{
-                .g-img-inner{
-                }
-              }
-               
-            }
-          }
         }
       }
-  
   
       .el-empty{
       }

@@ -1,7 +1,7 @@
 <template>
   <header class="y-header">
     <div class="notice">{{notice}}</div>
-    <div class="nav-wrap" @mouseleave="showSearch = false">
+    <div class="nav-wrap" >
       <a href="/" title="雅鹿官方网站" class="logo-box">
         <img :src="logo || '/img/logo.png'" alt="雅鹿官方网站">
       </a>
@@ -20,9 +20,9 @@
           </li>
         </ul>
       </nav>
-      <div class="go-search">
-        <input type="text" class="search-input" @keydown.enter="search" name="keywords" v-model="keywords" placeholder="">
-        <a @click="showSearch = true" href="javascript: void(0)" class="icon iconfont icon-search"></a>
+      <div @mouseenter="showSearch= true" @mouseleave="showSearch= false" :class="['go-search', showSearch ? 'focus' : 'unfocus']">
+        <input type="text" @blur="handleBlur" :class="['search-input' ]" @keydown.enter="search" name="keywords" v-model="keywords" placeholder="">
+        <a @click="search" href="javascript: void(0)" class="icon iconfont icon-search"></a>
       </div>
 
       <div id="menu" @click="appOn = true" class="app">
@@ -144,11 +144,22 @@ export default {
     },
     search(e){
       console.log("搜索", this.keywords);
+      let k = this.keywords.trim();
+      if(!k){
+        return;
+      }
+      location.href = `./search.html?k=${k}`;
     },
     getMenu(){
       getMenu().then(res=> {
         this.menus = res.data;
       });
+    },
+    handleBlur(){
+      this.showSearch = false;
+      setTimeout(() => {
+        this.keywords = "";
+      }, 200);
     },
   },
 };

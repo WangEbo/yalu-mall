@@ -13,18 +13,7 @@
     <div class="cate-good-list">
       <ul>
         <li v-for="(item,i) in list" :key="i">
-          <a :href="item.url" v-if="item">
-            <div class="good-card">
-              <div class="g-img">
-                <div class="g-img-inner" :style="{'background-image': `url(${item.pic})`}"></div>
-              </div>
-              <div class="g-info">
-                <p class="g-name">{{item.name}}</p>
-                <p class="g-cate-name">{{cate.name}}</p>
-                <p class="g-price">¥{{item.price}}</p>
-              </div>
-            </div>
-          </a>
+          <GoodCard :cate="cate" :item="item"></GoodCard>
         </li>
       </ul>
       <empty v-show="!list.length" description="暂无数据"></empty>
@@ -39,13 +28,13 @@
 
 import { queryGoodList } from "@model/goods";
 import { Empty } from "element-ui";
-
+import GoodCard from "../GoodCard";
 
 const defaultPageSize = 4;
 export default {
   name: "GoodCateCard",
   components: {
-    Empty,
+    Empty, GoodCard,
   },
   props: {
     cate: {

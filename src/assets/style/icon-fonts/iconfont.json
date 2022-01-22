@@ -6,6 +6,20 @@
   "description": "雅鹿服饰官网",
   "glyphs": [
     {
+      "icon_id": "7409538",
+      "name": "filter",
+      "font_class": "filter",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "11348890",
+      "name": "back",
+      "font_class": "back",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
       "icon_id": "1176911",
       "name": "home",
       "font_class": "home",
