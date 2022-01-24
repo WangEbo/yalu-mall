@@ -126,6 +126,14 @@
             visibility: visible;
           }
         }
+        &.current{
+          > a {
+            color: $mainTheme !important;
+            &:after {
+              opacity: 1;
+            }
+          }
+        }
         &.on {
           > a {
             color: $mainTheme !important;
@@ -373,12 +381,20 @@
               }
             }
           }
-
+          &.current{
+            >div>a {
+              color: $mainTheme !important;
+              &:after {
+                opacity: 1;
+              }
+            }
+          }
           &.active {
             i {
               transform: rotate(90deg);
             }
           }
+          
         }
         
       }

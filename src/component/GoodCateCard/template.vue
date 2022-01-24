@@ -18,7 +18,7 @@
       </ul>
       <empty v-show="!list.length" description="暂无数据"></empty>
       <div class="more" v-show="catetotal > defaultPageSize">
-        <a :href="`./good_cate.html?id=${activeChildCate.id}`"><span>查看更多内容</span></a>
+        <a :href="`./goods_cate.html?id=${activeChildCate.id}`"><span>查看更多内容</span></a>
       </div>
     </div>
   </div>

@@ -30,14 +30,7 @@
     <div class="new-page-list">
       <ul>
         <li v-for="(item, i) in list" :key="i">
-          <a :href="`./newsDetail.html?id=${item.id}`" class="news-card">
-            <div class="top-img" :style="{'background-image': `url(${item.coverImg})`}"></div>
-            <div class="bottom-info">
-              <div class="info-time">{{item.createTime && item.createTime.substr(0, 10)}}</div>
-              <h4 class="info-title">{{item.title}}</h4>
-              <div class="info-intro">{{item.intro}}</div>
-            </div>
-          </a>
+          <NewsCard v-if="item" :item="item"></NewsCard>
         </li>
         <el-empty v-show="!list.length" description="暂无数据"></el-empty>
       </ul>
@@ -66,6 +59,7 @@ import YHeader from "@component/YHeader";
 import YSwiper from "@component/YSwiper";
 import YSwiperSlide from "@component/YSwiperSlide";
 import YNewsCard from "@component/YNewsCard";
+import NewsCard from "@component/NewsCard";
 
 import YFooter from "@component/YFooter";
 
@@ -74,7 +68,7 @@ import { getNewsPageList } from "@model/news";
 
 export default {
   components: {
-    YHeader, YSwiper, YSwiperSlide, YFooter, YNewsCard,
+    YHeader, YSwiper, YSwiperSlide, YFooter, YNewsCard, NewsCard,
   },
   created() {
 

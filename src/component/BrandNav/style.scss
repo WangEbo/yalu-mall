@@ -1,40 +1,70 @@
 
 .tabs.page-nav {
   display: flex;
-  justify-content: space-around;
-  height: 300px;/*no*/
+  justify-content: flex-start;
+  height: 55vh;/*no*/
   align-items: center;
+  @include adptiveBg;
+  background-image: url('http://www.361sport.com/templates/dist/img/search_bg.jpg');
+  margin-bottom: 8vh;/*no*/
   ul {
-    display: flex;
+    margin-left: 15%;
+    >h3{
+      color: #FFF;
+      font-size: 40px;
+      line-height: 40px;
+    }
+    >p{
+      color: #FFF;
+      font-size: 34px;
+      margin: 20px 0 60px 0;
+      line-height: 32px;
+      opacity: 0.5;
+    }
     li {
+      display: inline-block;
+      background-color: #fff;
       a {
         display: flex;
         flex-direction: row;
         align-content: center;
         justify-content: space-around;
-        width: 200px;/*no*/
-        padding: 5px;/*no*/
-        box-sizing: content-box;
-        line-height: 60px;/*no*/
+        width: 220px;/*no*/
+        padding: 5px 10px;/*no*/
         text-align: center;
         color: $textColor;
+        line-height: 70px;/*no*/
         span.icon {
           color: $textColor;
           font-size: 30px;/*no*/
           display: inline-block;
         }
         .right-part {
-          font-size: 20px;/*no*/
-          font-weight: bold;
+          p{
+            font-size: 16px;/*no*/
+            font-weight: bold;
+            line-height: 35px;/*no*/
+            color: $textColor;
+            &:nth-child(1){
+              color: $lightTextColor;
+            }
+            
+          }
         }
       }
-      &.active {
+      &.active,&:hover {
         a{
           background-color: $mainTheme;
           color: #fff;
           span.icon {
             color: #fff;
           }
+          .right-part{
+            p{
+              color: #fff;
+            }
+          }
+          
         }
         
       }
@@ -46,21 +76,31 @@
 
 @media screen and(max-width: 800px) {
 .tabs.page-nav {
-  margin: 0 10%;
-  height: 240px;/*no*/
+  height: 45vh;
   ul {
     width: 100%;
-    justify-content: space-around;
+    margin-left: 10%;
+    >h3{
+      color: #FFF;
+      font-size: 16px;/*no*/
+      line-height: 20px;/*no*/
+    }
+    >p{
+      font-size: 14px;/*no*/
+      margin: 20px 0;/*no*/
+      line-height: 16px;/*no*/
+    }
     li {
-      width: 32%;
       a {
-        width: 100%;
+        width: 25vw;/*no*/
+        line-height: 60px;/*no*/
         span.icon {
           font-size: 20px;/*no*/
         }
         .right-part {
           p{
             font-size: 14px;/*no*/
+            line-height: 30px;/*no*/
           }
           
         }
@@ -84,12 +124,14 @@
     ul {
       li {
         a {
+          line-height: 54px;/*no*/
           span.icon {
             font-size: 16px;/*no*/
           }
           .right-part {
             p{
               font-size: 12px;/*no*/
+              line-height: 26px;/*no*/
             }
             
           }

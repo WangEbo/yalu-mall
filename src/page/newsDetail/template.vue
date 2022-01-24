@@ -1,5 +1,6 @@
 <template>
   <div class="news-detail">
+    <YHeader></YHeader>
     <div class="top-bg">
       <div class="pic" :style="{'background-image':`url(${detail.coverImg})`}"></div>
       <div class="mask-cover"></div>
@@ -22,11 +23,12 @@
   </div>
 </template>
 <script>
+import YHeader from "@component/YHeader";
 import YFooter from "@component/YFooter";
 
 import { getNewsDetailById, getNewsPageList } from "@model/news";
 export default {
-  components: { YFooter },
+  components: { YHeader },
   data(){
     return {
       detail: {

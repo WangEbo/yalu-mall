@@ -3,24 +3,14 @@
   <div id="cate-page" class="index">
     <y-header></y-header>
     <div class="main-content">
-      <div class="cate-bg" :style="{ 'background-image': cate.coverImg }"></div>
+      <div class="cate-bg" :style="{ 'background-image': `url(${cate.coverImg})`}">
+      </div>
       <div class="cate-content">
-        <CateFilter :class="{active: filterVisible}" v-show="filterVisible" :tree="cateTree" v-model="filter" :activeIndex="activeIndex"></CateFilter>
+        <CateFilter v-if="cateTree" @rangeChange="getList()" :class="{active: filterVisible}" v-show="filterVisible" :tree="cateTree" v-model="filter" :activeIndex="activeIndex"></CateFilter>
         <div class="cate-good-list">
           <ul>
-            <li v-for="(item,i) in list" :key="i">
-              <a :href="item.url" v-if="item">
-                <div class="good-card">
-                  <div class="g-img">
-                    <div class="g-img-inner" :style="{'background-image': `url(${item.pic})`}"></div>
-                  </div>
-                  <div class="g-info">
-                    <p class="g-name">{{item.name}}</p>
-                    <p class="g-cate-name">{{cate.name}}</p>
-                    <p class="g-price">¥{{item.price}}</p>
-                  </div>
-                </div>
-              </a>
+            <li v-for="(item, i) in list" :key="i">
+              <good-card v-if="item" :item="item" :cate="cate"></good-card>
             </li>
           </ul>
           <empty v-show="!list.length" description="暂无数据"></empty>
@@ -38,6 +28,8 @@ import YHeader from "@component/YHeader";
 import YFooter from "@component/YFooter";
 import CateFilter from "@component/CateFilter";
 import { Empty } from "element-ui";
+import GoodCard from "@component/GoodCard";
+
 
 import { queryGoodList, getGoodsTree } from "@model/goods";
 import { getUrlQuery } from "@util/common";
@@ -48,9 +40,15 @@ if(!query.id){
   console.log("请确认页面参数");
 }
 
+
+let defaultFilter = {
+  productCategoryId: query.id,
+  color: "",
+  range: [0, 1500],
+};
 export default {
   components: {
-    YHeader, YFooter, CateFilter, Empty,
+    YHeader, YFooter, CateFilter, Empty, GoodCard,
   },
   computed: {
   },
@@ -62,17 +60,16 @@ export default {
       },
       list: [
         {
+          name: "",
+          productCategoryId: "",
           title: "",
           content: "",
-          imgUrl: "",
+          pic: "",
+          price: "",
         },
       ],
       total: 0,
-      filter: {
-        productCategoryId: "",
-        color: "",
-        range: [0, 1500],
-      },
+      filter: Object.assign({}, defaultFilter),
       cateTree: [
         {
           id: 1,
@@ -116,8 +113,10 @@ export default {
   watch: {
     filter: {
       deep: true,
-      handler(nval){
-        this.getList();
+      handler(nval, oval){
+        if(JSON.stringify(nval) != JSON.stringify(oval)){
+          this.getList();
+        }
       },
     },
   },
@@ -141,12 +140,12 @@ export default {
         this.$set(this, "cateTree", res.data);
         this.cate = this.cateTree.find((item, i)=> {
           if(item.id == query.id){
-            this.activeIndex = (`${i}`);
+            this.activeIndex = (`${i+1}`);
             return true;
           }else{
             return item.children.find((child, ci)=> {
               if(child.id == query.id){
-                this.activeIndex = `${i}-${ci}`;
+                this.activeIndex = `${i+1}-${ci+1}`;
                 return true;
               }
               return false;
@@ -154,35 +153,23 @@ export default {
           }
         });
       });
-
-      this.cate = this.cateTree.find((item, i)=> {
-        if(item.id == query.id){
-          this.activeIndex = (`${i}`);
-          return true;
-        }else{
-          return item.children.find((child, ci)=> {
-            if(child.id == query.id){
-              this.activeIndex = `${i}-${ci}`;
-              return true;
-            }
-            return false;
-          });
-        }
-      });
       console.log(this.cate);
     },
     getList() {
       queryGoodList({
         productCategoryId: query.id,
+        pageSize: 2000,
+        pageNum: 1,
         priceBegin: this.filter.range[0],
         priceEnd: this.filter.range[1],
         color: this.filter.color,
       }).then(res=> {
-        this.list = res.data;
+        this.list = res.data.list;
+        this.catetotal = res.data.total;
       });
     },
     getLevel1Data(){
-
+      
     },
   },
 };

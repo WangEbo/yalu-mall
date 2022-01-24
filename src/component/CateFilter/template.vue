@@ -10,12 +10,13 @@
         :default-active="activeIndex"
         @open="handleOpen"
         @close="handleClose">
-        <Submenu v-for="(child1, i) in tree" :key="i" :index="i+''">
+
+        <Submenu v-for="(child1, i) in tree" :key="i" :index="`${i+1}`">
           <template slot="title">
-            <span class="menu-cate-name">{{child1.name}}</span>
+            <span :class="{'menu-cate-name': true, active: activeIndex.split('-')[0] == `${i+1}`}">{{child1.name}}</span>
           </template>
-          <MenuItem v-for="(child2, i2) in child1.children" :key="i2" :index="`${i}-${i2}`">
-            <a class="menu-cate-name" :href="`./good_cate.html?id=${child2.id}`">{{child2.name}}</a>
+          <MenuItem v-for="(child2, i2) in child1.children" :key="i2" :index="`${i+1}-${i2+1}`">
+            <a class="menu-cate-name" :href="`./goods_cate.html?id=${child2.id}`">{{child2.name}}</a>
           </MenuItem>
         </Submenu>
       </Menu>
@@ -32,6 +33,7 @@
           :show-tooltip="false"
           v-model="value.range"
           range
+          @change="rangeChange"
           :max="1500">
         </Slider>
       </div>
@@ -87,6 +89,9 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    rangeChange(range){
+      this.$emit("rangeChange", range);
     },
   },
 };

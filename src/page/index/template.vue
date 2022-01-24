@@ -38,7 +38,7 @@
             </div>
             <ul  class="category-wrap">
               <li v-for="(item, i) in r2BannerList" :key="i">
-                <a :href="`./good_cate.html?id=${item.id}`" :style="{'background-image': `url(${item.pic})`}">
+                <a :href="`./goods_cate.html?id=${item.id}`" :style="{'background-image': `url(${item.pic})`}">
                   <img :src="item.coverImg" alt="">
                   <div class="cate-des">
                     <div class="inner">
@@ -53,7 +53,7 @@
               <div class="more-box">
                 <p class="item-eng-name">{{item.relation.r2_englishName}}</p>
                 <p class="item-name">{{item.relation.name}}</p>
-                <a :href="`./good_cate.html?id=${item.id}`"><span>新品速递</span></a>
+                <a :href="`./goods_cate.html?id=${item.id}`"><span>新品速递</span></a>
               </div>
             </div>
           </div>

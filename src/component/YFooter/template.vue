@@ -3,11 +3,14 @@
     <div class="fmain">
       <div class="left">
         <h4>团队定制信息</h4>
-        <!-- <div>
+        <div>
           <h6>团购热线</h6>
-          <a class="able-link" v-for="tel in info.telPhone" :href="`tel:${tel}`" :key="tel" >{{tel}}</a>
+          <div v-if="info.teamOrderInfo && isArray(info.teamOrderInfo)">
+            <a class="able-link" v-for="(tel, i) in info.teamOrderInfo" :href="`tel:${i}`" :key="tel" >{{tel}}</a>
+          </div>
+          <a class="able-link" v-else href="">{{info.teamOrderInfo}}</a>
         </div>
-        <div> 
+        <!-- <div> 
           <h6>大型订购热线</h6>
           <a class="able-link" v-for="tel in info.largeTelPhone" :key="tel"  :href="`tel:${tel}`" >{{tel}}</a>
         </div>   -->
@@ -134,6 +137,9 @@ export default {
     this.getConfig();
   },
   methods:{
+    isArray(ar){
+      return ar instanceof Array && Array.isArray(ar);
+    },
     getConfig(){
       getConfig().then(res=> {
         this.info = res.data;

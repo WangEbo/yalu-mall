@@ -5,18 +5,19 @@
       <BrandNav :activeName="'history'"></BrandNav>
       <!-- 年份导航 -->
       <div class="year-nav">
+        <div class="divide-line"></div>
+        <i class="icon iconfont icon-arrow-right left"></i>
         <ul>
-          <i class="icon iconfont icon-arrow-right top"></i>
-          <li @click="selectYear(year)" :class="['year-item', curYear == year ? 'active' : '']" v-for="year in list" :key="year">
+          <li @click="selectYear(year)" :class="['year-item', curYear == year ? 'active' : '']" v-for="(year, i) in list" :key="i">
             <span class="arrow"></span><span>{{year}}</span>
           </li>
-          <i class="icon iconfont icon-arrow-right bottom"></i>
         </ul>
+        <i class="icon iconfont icon-arrow-right right"></i>
       </div>
       <!-- 历史内容 -->
       <div class="hisroty-list" :style="{'min-height': contentMinHeight}">
         <div class="list-bg">{{curYear}}</div>
-        <div class="list-content" v-if="historyList.length">
+        <div :class="['list-content', loading ? 'loading' : '']" v-if="historyList.length">
           <div class="list-part">
             <ul>
               <li v-for="(item,i) in col1" :key="i">
@@ -60,6 +61,7 @@ import { getYears, getYearHistoryList, getHistoryById } from "@model/history";
 
 require("../../assets/imgs/banner/banner1.png");
 export default {
+  name: "history",
   components: {
     YHeader, YFooter, YNewsCard, BrandNav,
   },
@@ -84,9 +86,11 @@ export default {
       activeTab: "history",
       curYear: "",
       historyList: [],
+      list: [],
       col1: [{}],
       col2: [{}],
       contentMinHeight: "",
+      loading: false,
     };
   },
   mounted() {
@@ -111,12 +115,18 @@ export default {
       this.getList();
     },
     getList() {
+      this.loading = true;
       getYearHistoryList({
         year: this.curYear,
         pageNum: 1,
         pageSize: 50,
       }).then(res=> {
         this.historyList = res.data.list;
+        this.loading = false;
+      }).catch(err=> {
+        this.loading = false;
+      }).finally(()=> {
+        this.loading = false;
       });
     },
   },

@@ -159,31 +159,6 @@
           transform: translateY(-10px);
           box-shadow: 1px 1px 6px $lightTextColor;
         }
-        a.news-card{
-          display: block;
-          .top-img{
-            height: 300px;
-            min-height: 140px;/*no*/
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-          }
-          .bottom-info{
-            padding: 25px 15px;
-            color: $textColor;
-            div{
-              margin-top: 20px;
-            }
-            .info-time{
-              font-size: 16px;
-              font-weight: bold;
-            }
-            h4.info-title{
-              font-size: 24px;
-              margin: 15px 0;
-            }
-          }
-        }
       }
 
     }
@@ -247,7 +222,13 @@
             .y-swiper-slide{
               .banner-item{
                 flex-direction: column;
+                .col1{
+                  height: 55%;
+                  flex: unset;
+                }
                 .col2{
+                  flex: unset;
+                  height: 45%;
                   padding: 14px;/*no*/
                   .time-info{
                     .info-header{
@@ -274,6 +255,9 @@
                       margin-bottom: 10px;/*no*/
                       font-size: 14px;/*no*/
                     }
+                    .info-time{
+                      font-size: 14px;/*no*/
+                    }
                   }
                 }
               }
@@ -293,29 +277,6 @@
           width: 45%;
           margin: 20px 2.5%;/*no*/
           &:hover{
-          }
-          a.news-card{
-            .top-img{
-              height: 170px;/*no*/
-            }
-            .bottom-info{
-              padding: 10px 15px;/*no*/
-              line-height: 20px;/*no*/
-              div{
-              }
-              .info-time{
-                margin-top: 12px;/*no*/
-                font-size: 12px;/*no*/
-              }
-              h4.info-title{
-                font-size: 14px;/*no*/
-                margin: 12px 0;/*no*/
-              }
-              .info-intro{
-                font-size: 12px;/*no*/
-                margin-bottom: 12px;/*no*/
-              }
-            }
           }
         }
       }
@@ -354,7 +315,7 @@
     padding-top: 70px;/*no*/
     #top-banner{
       .section-content {
-        height: 70vh;
+        height: 90vh;
         .banner-wrap{
           height: 85%;
           width: 90%;

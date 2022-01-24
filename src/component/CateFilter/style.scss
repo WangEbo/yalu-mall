@@ -29,19 +29,26 @@
         ::v-deep .el-submenu__icon-arrow{
           font-size: 18px;
         }
-        .el-submenu__title{
+        ::v-deep .el-submenu__title{
           .menu-cate-name{
             font-weight: bold;
             font-size: 18px;
+            &.active{
+              color: $mainTheme;
+            }
           }
-          
+          &:hover{
+            background-color: #ffe8e5;
+          } 
         }
         .el-menu--inline{
           .menu-cate-name{
             font-size: 14px;
           }
         }
-
+        .el-menu-item:hover{
+          background-color: #ffe8e5;
+        }
         &.is-active{
           .el-submenu__title{
             .menu-cate-name{

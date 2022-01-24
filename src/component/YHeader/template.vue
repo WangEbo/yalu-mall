@@ -7,8 +7,8 @@
       </a>
       <nav class="pc-nav pc">
         <ul>
-          <li class="go-down"  v-for="(item,i) in menus" :key="i">
-            <a class="menu-level-1">{{item.name}}</a>
+          <li class="go-down" :class="[item.current ? 'current' : '']"  v-for="(item,i) in menus" :key="i">
+            <a class="menu-level-1" :href="item.url || 'javascript: viod(0)'">{{item.name}}</a>
             <div class="out-nav" v-if="item.childs && item.childs.length">
               <div class="items">
                 <span></span>
@@ -34,9 +34,9 @@
         <div class="mask" @click="appOn = false"></div>
         <div class="child">
           <ul>
-            <li @click="showChild(item)" :class="{active: item.active}" class="go-child"  v-for="(item,i) in menus" :key="i">
+            <li @click="showChild(item)" :class="{active: item.active, current: item.current}" class="go-child"  v-for="(item,i) in menus" :key="i">
               <div>
-                <a>{{item.name}}</a><i  v-show="item.childs && item.childs.length" class="icon iconfont icon-arrow-right"></i>
+                <a  :href="item.url || 'javascript: viod(0)'">{{item.name}}</a><i  v-show="item.childs && item.childs.length" class="icon iconfont icon-arrow-right"></i>
               </div>
               <ol v-show="item.childs && item.childs.length" class="nav-down" :style="{height: item.active ? (item.childs && item.childs.length) * 38 +'px' : '0'}">
                 <li v-for="(child, cIndex) in item.childs" :key="cIndex"><a :href="child.url || 'javascript: void(0)'" :target="child.target || '_self'">{{child.name}}</a></li>
@@ -68,7 +68,7 @@ export default {
         },
         {
           name: "品牌介绍",
-          url: "",
+          url: "overview.html",
           childs: [
             {
               name: "品牌概况",
@@ -86,7 +86,7 @@ export default {
         },
         {
           name: "品牌资讯",
-          url: "",
+          url: "news.html",
           childs: [
             {
               name: "品牌资讯",
@@ -100,23 +100,7 @@ export default {
           childs: [
             {
               name: "跑步系列",
-              url: "goods_top_1.html",
-            },
-            {
-              name: "篮球系列",
-              url: "goods_top_3.html",
-            },
-            {
-              name: "生活系列",
-              url: "goods_top_4.html",
-            },
-            {
-              name: "综训系列",
-              url: "goods_top_2.html",
-            },
-            {
-              name: "团购定制",
-              url: "goods_top_11.html",
+              url: "goods_cate.html?id=1",
             },
           ],
         },
@@ -153,6 +137,23 @@ export default {
     getMenu(){
       getMenu().then(res=> {
         this.menus = res.data;
+        let pathname = location.pathname;
+        for(let i =0;i< this.menus.length;i++){
+          let item = this.menus[i];
+          if(item.url === "/"){
+            item.current = pathname === item.url;
+          }else{
+            pathname = pathname.split(".")[0];
+            let menuPath = item.url && item.url.split(".")[0];
+            let childMatch = item.childs.some(child=> {
+              let childPath = child.url && child.url.split(".")[0];
+              return childPath && pathname.includes(childPath);
+            });
+            if( (menuPath && pathname.includes(menuPath)) || childMatch ){
+              item.current = true;
+            }
+          }
+        }
       });
     },
     handleBlur(){

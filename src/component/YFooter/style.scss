@@ -337,10 +337,15 @@
               transform: translateX(-50%);
               z-index: 99;
               display: none;
+              
               .shadow{
                 display: inline-block;
                 width: 60px;/*no*/
                 height: 60px;/*no*/
+                
+                .f-center{
+                  font-size: 12px;/*no*/
+                }
               }
             }
             &:hover{

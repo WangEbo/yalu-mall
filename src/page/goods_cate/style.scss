@@ -2,7 +2,7 @@
   .main-content{
     padding-top: $headerHeight;
     .cate-bg{
-      height: 40vh;
+      height: 50vh;
       @include adptiveBg;
     }
 
@@ -18,7 +18,7 @@
       .cate-good-list{
         width: 77%;
         border-left: 1px solid $bderColor;/*no*/
-        padding-left: 5%;
+        padding: 4% 5%;
         position: relative;
         ul{
           width: 100%;
@@ -26,8 +26,8 @@
           justify-content: flex-start;
           flex-wrap: wrap;
           li{
-            width: 20%;
-            margin: 2.5%;
+            width: 28%;
+            margin: 30px 2.66%;
             background-color: #fff;
           }
         }
@@ -55,6 +55,7 @@
     overflow: auto;
     .main-content{
       .cate-bg{
+        height: 40vh;
       }
   
       .cate-content{
@@ -80,6 +81,10 @@
         
 
         .cate-good-list{
+          width: 90%;
+          margin: 0 auto;
+          padding: 50px 0;/*no*/
+          border: 0;
           ul{
             li{
               width: 45%;

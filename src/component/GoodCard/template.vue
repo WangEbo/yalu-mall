@@ -6,7 +6,7 @@
         </div>
         <div class="g-info">
           <p class="g-name">{{item.name}}</p>
-          <p class="g-cate-name">{{cate.name}}</p>
+          <p class="g-cate-name">{{cate.name || item.productCategoryName}}</p>
           <p class="g-price">¥{{item.price}}</p>
         </div>
       </a>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { Empty } from "element-ui";
 
 const defaultPageSize = 4;
 export default {

@@ -1,24 +1,250 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate3d(0%, -20px, 0);
+#search-page{
+  .main-content{
+    padding-top: $headerHeight;
+    background-color: #f9f9f9;
   }
-  to {
-    opacity: 1;
-    transform: none;
+
+  .top-bg{
+    height: 50vh;
+    display: flex;
+    @include adptiveBg;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url('http://www.361sport.com/templates/dist/img/search_bg.jpg');
+    .search-box{
+      margin-left: 15%;
+      h3{
+        color: #FFF;
+        font-size: 36px;
+        line-height: 40px;
+      }
+      p{
+        color: #FFF;
+        font-size: 32px;
+        margin: 15px 0;
+        line-height: 32px;
+        opacity: 0.5;
+      }
+      .go-search{
+        background-color: #fff;
+        input{
+          height: 60px;
+          line-height: 60px;
+          width: 30vw;
+          border: 0;
+          font-size: 24px;
+        }
+        a.iconfont{
+          vertical-align: middle;
+          font-size: 32px;
+          margin-right: 20px;
+        }
+      }
+    }
+    
+  }
+
+  .el-tabs__nav-wrap::after{
+    display: none;
+  }
+  .el-tabs__nav-scroll{
+    margin: 50px 15%;
+    .el-tabs__item{
+      font-size: 24px;
+      font-weight: bold;
+      &.is-active, &:hover{
+        color: $mainTheme;
+      }
+    }
+    .el-tabs__active-bar{
+      background-color: $mainTheme;
+    }
+  }
+
+  .goods-content,.news-content{
+    margin: 50px 12%;
+    border: 8px;
+    ul{
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      width: 100%;
+      .el-empty{
+        width: 100%;
+      }
+      li{
+        border: 8px;
+        width: 28%;
+        margin: 30px 2.66%;
+        transition: .3s all ease-in;
+        background-color: #fff;
+        &:hover{
+          transform: translateY(-10px);/*no*/
+          box-shadow: 1px 1px 6px $lightTextColor;/*no*/
+        }
+      }
+    }
+  }
+  .goods-content{
+    ul{
+      li{
+        width: 20%;
+        margin: 30px 2.5%;
+      }
+    }
   }
 }
 
-@keyframes upAndDownLoop {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-8px);
-  }
-}
 
 
-#overview-page{
+
+@media screen and(max-width: 800px) {
+  #search-page{
+    .main-content{
+      padding-top: 60px;/*no*/
+      background-color: #f9f9f9;
+    }
   
+    .top-bg{
+      height: 25vh;
+      display: flex;
+      @include adptiveBg;
+      justify-content: flex-start;
+      align-items: center;
+      background-image: url('http://www.361sport.com/templates/dist/img/search_bg.jpg');
+      .search-box{
+        margin-left: 5%;
+        h3{
+          color: #FFF;
+          font-size: 16px;/*no*/
+          line-height: 20px;/*no*/
+        }
+        p{
+          font-size: 14px;/*no*/
+          margin: 8px 0;/*no*/
+          line-height: 16px;/*no*/
+        }
+        .go-search{
+          background-color: #fff;
+          input{
+            height: 30px;/*no*/
+            line-height: 30px;/*no*/
+            width: 30vw;
+            font-size: 12px;/*no*/
+            outline: 0;
+            border: 0;
+          }
+          a.iconfont{
+            vertical-align: middle;
+            font-size: 20px;/*no*/
+            margin-right: 8px;/*no*/
+          }
+        }
+      }
+      
+    }
+
+
+    .el-tabs__nav-scroll{
+      margin: 20px 5%; /*no*/
+      .el-tabs__item{
+        font-size: 18px;/*no*/
+        line-height: 30px;/*no*/
+        height: 30px;/*no*/
+        &.is-active, &:hover{
+        }
+      }
+      .el-tabs__active-bar{
+        height: 2px;/*no*/
+      }
+    }
+  
+    .goods-content,.news-content{
+      margin: 20px 5%;/*no*/
+      border: 8px;/*no*/
+      ul{
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        width: 100%;
+        .el-empty{
+          width: 100%;
+        }
+        li{
+          border: 8px;/*no*/
+          width: 45%;
+          margin: 15px 2.5%;/*no*/
+          &:hover{
+          }
+        }
+      }
+    }
+    .goods-content{
+      ul{
+        li{
+          width: 45%;
+          margin: 20px 2.5%;/*no*/
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and(max-width: 500px) {
+  #search-page{
+    .main-content{
+    }
+  
+    .top-bg{
+      .search-box{
+        h3{
+        }
+        p{
+        }
+        .go-search{
+          input{
+          }
+          a.iconfont{
+          }
+        }
+      }
+      
+    }
+
+
+    .el-tabs__nav-scroll{
+      .el-tabs__item{
+        &.is-active, &:hover{
+        }
+      }
+      .el-tabs__active-bar{
+
+      }
+    }
+  
+    .goods-content,.news-content{
+      ul{
+        .el-empty{
+        }
+        li{
+          border: 8px;/*no*/
+          width: 100%;
+          margin: 15px 0;/*no*/
+          &:hover{
+          }
+        }
+      }
+    }
+    .goods-content{
+      ul{
+        li{
+          width: 45%;
+          margin: 20px 2.5%;/*no*/
+        }
+      }
+    }
+  }
 }

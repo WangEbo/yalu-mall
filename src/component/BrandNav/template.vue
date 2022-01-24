@@ -2,7 +2,9 @@
 <template>
   <div class="tabs page-nav">
     <ul class="tab-wrap">
-      <li class="tab-item" v-for="item in tabs" :key="item" :class="{active: activeName == item.name}">
+      <h3>{{activeItem.text}}</h3>
+      <p>{{activeItem.engText}}</p>
+      <li class="tab-item" v-for="(item, i) in tabs" :key="i" :class="{active: activeName == item.name}">
         <a :href="item.href">
           <span class="icon iconfont" :class="[item.icon]"></span> 
           <div class="right-part">
@@ -24,6 +26,11 @@ export default {
   props: {
     activeName: {
       type: String,
+    },
+  },
+  computed: {
+    activeItem(){
+      return this.tabs.find(item=> item.name == this.activeName);
     },
   },
   data(){
