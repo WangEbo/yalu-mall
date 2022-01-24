@@ -32,7 +32,7 @@
       align-items: center;
       .divide-line{
         position: absolute;
-        height: 1px;
+        height: 1px;/*no*/
         background-color: #eee;
         top: 50%;
         transform: translateX(-50%) translateY(-50%);
@@ -57,72 +57,76 @@
       .iconfont.right{
       }
 
-      ul{
+      .inner-wrap{
         flex: 1;
-        display: flex;
-        justify-content: space-between;
-        padding: 30px 0;
-        overflow-x: auto;
         overflow: hidden;
-        li.year-item{
-          font-family: en-m;
-          color: $lightTextColor;
-          position: relative;
-          cursor: pointer;
-          width: 80px;/*no*/
-          text-align: center;
-          line-height: $h;/*no*/
-          height: $h;/*no*/
-          transition: .3s all ease-in-out;
-          background-color: #fff;
-          padding: 0 10px;
-          margin: 0 12px;
-          span{
+        ul{
+          white-space: nowrap;
+          display: inline-block;
+          padding: 30px 0;
+          li.year-item{
             display: inline-block;
-            font-size: 24px;/*no*/
-            font-weight: bold;
-          }
-          &.active{
-            color: $mainTheme;
+            font-family: en-m;
+            color: $lightTextColor;
+            position: relative;
+            cursor: pointer;
+            width: 80px;/*no*/
+            text-align: center;
+            line-height: $h;/*no*/
+            height: $h;/*no*/
+            transition: .3s all ease-in-out;
+            background-color: #fff;
+            padding: 0 10px;
+            margin: 0 60px;
             span{
-              font-size: 28px;/*no*/
+              display: inline-block;
+              font-size: 24px;/*no*/
+              font-weight: bold;
+            }
+            &.active{
+              color: $mainTheme;
+              span{
+                font-size: 28px;/*no*/
+              }
+              span.arrow{
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+              }
+            }
+            &:hover{
+              span.arrow{
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+                transition: .3s all ease-in-out;
+              }
             }
             span.arrow{
-              transform: translateY(0);
-              opacity: 1;
-              pointer-events: auto;
+              float: left;
+              border-width: 8px;/*no*/
+              border-color: transparent transparent #e60012 transparent;
+              border-style: solid;
+              position: absolute;
+              bottom: -30px;
+              left: calc(50% - 8px);
+              transform: translateY(8px);
+              opacity: 0;
+              pointer-events: none;
             }
+    
           }
-          &:hover{
-            span.arrow{
-              transform: translateY(0);
-              opacity: 1;
-              pointer-events: auto;
-              transition: .3s all ease-in-out;
-            }
-          }
-          span.arrow{
-            float: left;
-            border-width: 8px;/*no*/
-            border-color: transparent transparent #e60012 transparent;
-            border-width: 8px;
-            border-style: solid;
-            position: absolute;
-            bottom: -30px;
-            left: calc(50% - 8px);
-            transform: translateY(8px);
-            opacity: 0;
-            pointer-events: none;
-          }
-  
         }
       }
+
+      
       
     }
 
 
     .hisroty-list{
       width: 1200px;
+      min-height: 60vh;
       margin: 0 auto;
       padding: 20px;
       position: relative;
@@ -178,47 +182,49 @@
 
 
 @media screen and(max-width: 800px) {
+
   #hsitroy-page{
     .main-content{
       padding-top: $headerHeight;
-  
       .year-nav{
-        right: 0;
+        margin: 20px 5%;/*no*/
+        .divide-line{
+        }
+        
+        $h: 32px;/*no*/
         .iconfont{
-          font-size: 20px;/*no*/
         }
   
-        li.year-item{
-          line-height: 24px;/*no*/
-          span{
-            font-size: 14px;/*no*/
-          }
-          &.active{
-            span{
-              font-size: 18px;/*no*/
-            }
-            span.arrow{
-            }
-          }
-          &:hover{
-            span.arrow{
-            }
-          }
-          span.arrow{
-            float: left;
-            border-width: 8px;/*no*/
-          }
-  
+        .iconfont.left{
+        }
+        .iconfont.right{
         }
   
-        li + li{
-          margin-top: 15px;/*no*/
-          &:before{
-            bottom: calc(100% + 2px);/*no*/
-            height: 16px;/*no*/
-            width: 2px;/*no*/
+        .inner-wrap{
+          ul{
+            li.year-item{
+              margin: 0 30px;/*no*/
+              span{
+              }
+              &.active{
+                span{
+                }
+                span.arrow{
+                }
+              }
+              &:hover{
+                span.arrow{
+                }
+              }
+              span.arrow{
+              }
+      
+            }
           }
         }
+  
+        
+        
       }
   
   
@@ -252,5 +258,94 @@
       }
     }
   }
+  
+  
+}
+
+
+@media screen and(max-width: 800px) {
+
+  #hsitroy-page{
+    .main-content{
+      padding-top: $headerHeight;
+      .year-nav{
+        margin: 20px 5%;/*no*/
+        .divide-line{
+        }
+        
+        $h: 28px;
+        .iconfont{
+          font-size: $h;/*no*/
+        }
+  
+        .iconfont.left{
+        }
+        .iconfont.right{
+        }
+  
+        .inner-wrap{
+          
+          ul{
+            li.year-item{
+              margin: 0 8px;/*no*/
+              font-size: $h;/*no*/
+              line-height: $h;/*no*/
+              height: $h;/*no*/
+              span{
+                font-size: 28px;/*no*/
+              }
+              &.active{
+                span{
+                }
+                span.arrow{
+                }
+              }
+              &:hover{
+                span.arrow{
+                }
+              }
+              span.arrow{
+              }
+      
+            }
+          }
+        }
+  
+        
+        
+      }
+  
+  
+      .hisroty-list{
+        width: 80%;
+        .list-bg{
+          height: 60vh;
+          line-height: 60vh;
+        }
+  
+        .list-content{
+          width: 100%;
+          flex-wrap: wrap;
+          justify-content: center;
+          flex-direction: column;
+          align-content: center;
+          .list-part{
+            width: 80%;
+            li{
+              
+              h4{
+                font-size: 20px;/*no*/
+                margin-bottom: 15px;/*no*/
+              }
+              p{
+                font-size: 14px;/*no*/
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
   
 }

@@ -25,6 +25,12 @@
   }
   .overview-content{
     margin: 0 10%;
+    opacity: 1;
+    transition: .3s all ease-in;
+    &.loading{
+      transform: translateY(15px);
+      opacity: 0;
+    }
     ul{
       li{
         display: flex;

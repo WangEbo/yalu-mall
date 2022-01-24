@@ -7,15 +7,17 @@
       <div class="year-nav">
         <div class="divide-line"></div>
         <i class="icon iconfont icon-arrow-right left"></i>
-        <ul>
-          <li @click="selectYear(year)" :class="['year-item', curYear == year ? 'active' : '']" v-for="(year, i) in list" :key="i">
-            <span class="arrow"></span><span>{{year}}</span>
-          </li>
-        </ul>
+        <div class="inner-wrap" ref="scroll">
+          <ul>
+            <li @click="selectYear(year)" :class="['year-item', curYear == year ? 'active' : '']" v-for="(year, i) in list" :key="i">
+              <span class="arrow"></span><span>{{year}}</span>
+            </li>
+          </ul>
+        </div>
         <i class="icon iconfont icon-arrow-right right"></i>
       </div>
       <!-- 历史内容 -->
-      <div class="hisroty-list" :style="{'min-height': contentMinHeight}">
+      <div class="hisroty-list">
         <div class="list-bg">{{curYear}}</div>
         <div :class="['list-content', loading ? 'loading' : '']" v-if="historyList.length">
           <div class="list-part">
@@ -45,21 +47,17 @@
   </div>
 </template>
 <script>
-
-const fullpage = require("fullpage.js");
-import "fullpage.js/dist/fullpage.css";
-
 import YHeader from "@component/YHeader";
-import YSwiper from "@component/YSwiper";
-import YSwiperSlide from "@component/YSwiperSlide";
 import YNewsCard from "@component/YNewsCard";
-
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
-
 import { getYears, getYearHistoryList, getHistoryById } from "@model/history";
 
-require("../../assets/imgs/banner/banner1.png");
+import BScroll from "@better-scroll/core";
+import MouseWheel from "@better-scroll/mouse-wheel";
+BScroll.use(MouseWheel);
+let Bs = null;
+
 export default {
   name: "history",
   components: {
@@ -89,24 +87,28 @@ export default {
       list: [],
       col1: [{}],
       col2: [{}],
-      contentMinHeight: "",
       loading: false,
     };
   },
   mounted() {
     this.getList();
-    this.setSize();
-    window.onresize(this.setSize);
   },
   methods: {
-    setSize(){
-      let windowHeight = window.innerHeight;
-      this.contentMinHeight = windowHeight * 0.6 + "px";
+    initScroll(){
+      Bs = new BScroll(this.$refs.scroll, {
+        scrollX: true,
+        scrollY: false,
+        mouseWheel: true,
+        click: true,
+      });
     },
     getYears(){
       getYears().then(res=> {
         this.list = res.data;
         this.curYear = this.list[0];
+        setTimeout(() => {
+          this.initScroll();
+        },200);
         this.getList();
       });
     },

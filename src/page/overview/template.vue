@@ -4,7 +4,7 @@
     <y-header></y-header>
     <div class="main-content">
       <BrandNav :activeName="'overview'"></BrandNav>
-      <div class="overview-content">
+      <div :class="['overview-content', loading ? 'loading' :'']">
         <ul>
           <li v-for="(item, i) in list" class="view-item" :key="i">
             <div class="img-wrap" :style="{ 'background-image': item.imgUrl }">
@@ -53,15 +53,22 @@ export default {
           imgUrl: "",
         },
       ],
+      loading: false,
     };
   },
   mounted() {
     this.getList();
+
   },
   methods: {
     getList() {
+      this.loading = true;
       getOverviewList().then(res => {
         this.list = res.data.list;
+      }).catch(err=> {
+        this.loading = false;
+      }).finally(()=> {
+        this.loading = false;
       });
     },
   },
