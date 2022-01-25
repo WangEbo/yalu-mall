@@ -10,13 +10,6 @@ const cssLoader = {
   use: [
     "vue-style-loader",
     "css-loader",
-    {
-      loader: 'px2rem-loader',
-      options: {     // px像素自动转 rem 配置
-        remUnit: 192,    //1单位 rem  对应 像素
-        remPrecision: 4   //rem转换保留小数点数
-      }
-    },
     "postcss-loader",
     {
       loader: 'px2rem-loader',
@@ -41,8 +34,13 @@ const sassLoader = {
         remPrecision: 8   //rem转换保留小数点数
       }
     },
-    "sass-loader",
     "postcss-loader",
+    {
+      loader: 'sass-loader',
+      options: {
+        outputStyle: 'expanded',
+      },
+    },
     {
       loader: "sass-resources-loader",
       options: {
@@ -123,7 +121,12 @@ exports.initLoader = function(env){
           remPrecision: 8   //rem转换保留小数点数
         }
       },
-      "sass-loader",
+      {
+        loader: 'sass-loader',
+        options: {
+          outputStyle: 'expanded',
+        },
+      },
       "postcss-loader",
       {
         loader: "sass-resources-loader",
