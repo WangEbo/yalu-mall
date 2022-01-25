@@ -38,7 +38,7 @@
             </div>
             <ul  class="category-wrap">
               <li v-for="(item, i) in r2BannerList" :key="i">
-                <a :href="`./goods_cate.html?id=${item.id}`" :style="{'background-image': `url(${item.pic})`}">
+                <a :href="`./goods_cate.html?id=${item.relationId}`" :style="{'background-image': `url(${item.pic})`}">
                   <img :src="item.coverImg" alt="">
                   <div class="cate-des">
                     <div class="inner">
@@ -53,7 +53,7 @@
               <div class="more-box">
                 <p class="item-eng-name">{{item.relation.r2_englishName}}</p>
                 <p class="item-name">{{item.relation.name}}</p>
-                <a :href="`./goods_cate.html?id=${item.id}`"><span>新品速递</span></a>
+                <a :href="`./goods_cate.html?id=${item.relationId}`"><span>新品速递</span></a>
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
             <div class="banner-wrap">
               <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r3BannerList" :key="i">
-                  <a class="banner-item" :href="`./newsDetail.html?id=${item.id}`">
+                  <a class="banner-item" :href="`./newsDetail.html?id=${item.relationId}`">
                     <div class="col1"  :style="{'background-image': `url(${item.pic})`}">
                       <!-- <img src="../../assets/imgs/768-557.png" alt=""> -->
                     </div>
@@ -132,6 +132,7 @@ export default {
             r2_englishName: "",
           },
           id: "",
+          relationId: "",
         },
       ],
       r3BannerList: [
@@ -142,6 +143,7 @@ export default {
             title: "",
             intro: "",
           },
+          relationId: "",
         },
       ],
       headerBlackTheme: false,
