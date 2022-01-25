@@ -6,7 +6,7 @@
       <div class="cate-bg" :style="{ 'background-image': `url(${cate.coverImg})`}">
       </div>
       <div class="cate-content">
-        <CateFilter v-if="cateTree" @rangeChange="getList()" :class="{active: filterVisible}" v-show="filterVisible" :tree="cateTree" v-model="filter" :activeIndex="activeIndex"></CateFilter>
+        <CateFilter v-if="cateTree" @rangeChange="getList()" @colorChange="getList()" :class="{active: filterVisible}" v-show="filterVisible" :tree="cateTree" v-model="filter" :activeIndex="activeIndex"></CateFilter>
         <div class="cate-good-list">
           <ul>
             <li v-for="(item, i) in list" :key="i">

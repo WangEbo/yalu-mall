@@ -38,7 +38,7 @@
         </Slider>
       </div>
       <h4>颜色</h4>
-      <ColorPicker v-model="value.color"></ColorPicker>
+      <ColorPicker @change="colorChange" v-model="value.color"></ColorPicker>
     </div>
   </div>
 </template>
@@ -92,6 +92,9 @@ export default {
     },
     rangeChange(range){
       this.$emit("rangeChange", range);
+    },
+    colorChange(c){
+      this.$emit("colorChange", c);
     },
   },
 };

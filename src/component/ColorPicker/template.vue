@@ -38,6 +38,7 @@ export default {
   methods: {
     selectColor(e, item) {
       this.$emit("input", item.color);
+      this.$emit("change", item.color);
     },
   },
 };
