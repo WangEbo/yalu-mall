@@ -38,6 +38,7 @@
 
     #r1 {
       .section-content {
+        padding-top: $headerHeight;
         .banner-wrap {
           height: 100%;
           .y-swiper {
@@ -110,14 +111,21 @@
           }
         }
       }
+      @media screen and(max-width: 800px) {
+        .section-content {
+          padding-top: 60px;/*no*/
+        }
+      }
+
     }
 
 
     #r2 {
       .section-content {
         position: relative;
+        padding-top: $headerHeight;
         .banner-wrap {
-          height: 85%;
+          height: 80%;
           background-color: #666;
           position: relative;
           overflow: hidden;
@@ -173,8 +181,8 @@
           align-items: center;
           padding: 0 142px;
           position: absolute;
-          justify-content: space-between;
-          bottom: 15%;
+          justify-content: space-around;
+          bottom: 16%;
           z-index: 99;
           transform: translateY(50%);
           li {
@@ -307,8 +315,11 @@
             }
           }
         }
+      }
 
-        @media screen and(max-width: 800px) {
+      @media screen and(max-width: 800px) {
+        .section-content {
+          padding-top: 60px;/*no*/
           .banner-wrap{
             height: 62%;
             .y-swiper {
@@ -322,7 +333,7 @@
           ul.category-wrap{
             display: none
           }
-
+  
           .view-more{
             top: 60%!important;
             left: 0;
