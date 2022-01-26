@@ -22,6 +22,7 @@
                 <GoodCard v-if="item" :item="item"></GoodCard>
               </li>
             </ul>
+            <Empty v-show="!goodsList.length" description="暂无数据"></Empty>
           </div>
         </TabPane>
         <TabPane :label="`资讯(${newsTotal})`" name="news">
@@ -31,6 +32,7 @@
                 <NewsCard v-if="item" :item="item"></NewsCard>
               </li>
             </ul>
+            <Empty v-show="!newList.length" description="暂无数据"></Empty>
           </div>
         </TabPane>
       </Tabs>
@@ -55,7 +57,7 @@ import { getNewsPageList } from "@model/news";
 
 export default {
   components: {
-    YHeader, YFooter, GoodCard, NewsCard, Tabs, TabPane,
+    YHeader, YFooter, GoodCard, NewsCard, Tabs, TabPane, Empty,
   },
   created() {
 
