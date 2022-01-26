@@ -1,6 +1,6 @@
 #cate-page{
+  padding-top: $headerHeight;
   .main-content{
-    padding-top: $headerHeight;
     .cate-bg{
       height: 50vh;
       @include adptiveBg;
