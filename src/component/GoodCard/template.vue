@@ -1,6 +1,6 @@
 <template>
     <div class="good-card">
-      <a :href="item.url" v-if="item">
+      <a :href="item.url" v-if="item" target="_blank">
         <div class="g-img">
           <div class="g-img-inner" :style="{'background-image': `url(${item.pic})`}"></div>
         </div>
