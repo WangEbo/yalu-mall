@@ -176,9 +176,10 @@
         }
         ul.category-wrap {
           width: 100%;
-          height: 190px;
-          display: flex;
-          align-items: center;
+          height: 180px;
+          // display: flex;
+          // align-items: center;
+          text-align: center;
           padding: 0 142px;
           position: absolute;
           justify-content: space-around;
@@ -192,6 +193,8 @@
             border-radius: 4px;
             overflow: hidden;
             min-width: 300px;
+            display: inline-block;
+            margin: 0 30px;
             a{
               display: block;
               width: 100%;

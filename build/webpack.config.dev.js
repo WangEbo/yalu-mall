@@ -37,7 +37,7 @@ module.exports = function(env){
       },
       proxy: {
         '/': {
-          target: 'http://47.106.213.156:48080/', 
+          target: 'http://8.143.199.43/', 
           changeOrigin: false,
           // pathRewrite: {
           //   '^/': ''
