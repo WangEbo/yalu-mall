@@ -7,7 +7,7 @@
       <div :class="['overview-content', loading ? 'loading' :'']">
         <ul>
           <li v-for="(item, i) in list" class="view-item" :key="i">
-            <div class="img-wrap" :style="{ 'background-image': item.imgUrl }">
+            <div class="img-wrap" >
               <img :src="item.imgUrl" alt="">
             </div>
             <div class="overview-item">
@@ -30,7 +30,7 @@ import YHeader from "@component/YHeader";
 
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
-
+import { imgUrlEncode } from "@util/common";
 import { getOverviewList } from "@model/overview";
 
 require("../../assets/imgs/banner/banner1.png");
@@ -61,6 +61,7 @@ export default {
 
   },
   methods: {
+    imgUrlEncode,
     getList() {
       this.loading = true;
       getOverviewList().then(res => {

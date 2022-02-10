@@ -24,5 +24,6 @@ module.exports = {
     "no-console": "off",
     "no-unused-vars": "off",
     "vue/no-parsing-error": "off",
+    "no-useless-escape": "off",
   },
 };

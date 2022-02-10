@@ -3,7 +3,7 @@
   <div id="cate-page" class="index">
     <y-header></y-header>
     <div class="main-content">
-      <div class="cate-bg" :style="{ 'background-image': `url(${cate.coverImg})`}">
+      <div class="cate-bg" :style="{ 'background-image': `url('${imgUrlEncode(cate && cate.coverImg)}')`}">
       </div>
       <div class="cate-content">
         <CateFilter v-if="cateTree" @rangeChange="getList()" @colorChange="getList()" :class="{active: filterVisible}" v-show="filterVisible" :tree="cateTree" v-model="filter" :activeIndex="activeIndex"></CateFilter>
@@ -32,7 +32,7 @@ import GoodCard from "@component/GoodCard";
 
 
 import { queryGoodList, getGoodsTree } from "@model/goods";
-import { getUrlQuery } from "@util/common";
+import { getUrlQuery, imgUrlEncode } from "@util/common";
 
 let query = getUrlQuery();
 console.log(query);
@@ -74,34 +74,14 @@ export default {
         {
           id: 1,
           coverImg: "",
-          name: "篮球",
+          name: "",
           children: [
             {
               id: 11,
               coverImg: "",
-              name: "篮球1",
+              name: "",
             },
             {
-              id: 12,
-              coverImg: "",
-              name: "篮球2",
-            },
-          ],
-        },
-        {
-          id: 2,
-          coverImg: "",
-          name: "运动",
-          children: [
-            {
-              id: 21,
-              coverImg: "",
-              name: "运动1",
-            },
-            {
-              id: 22,
-              coverImg: "",
-              name: "运动2",
             },
           ],
         },
@@ -131,6 +111,7 @@ export default {
     };
   },
   methods: {
+    imgUrlEncode,
     toggleFilterVisible(){
       this.filterVisible = !this.filterVisible;
     },

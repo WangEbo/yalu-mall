@@ -8,7 +8,7 @@
             <div class="banner-wrap">
               <y-swiper ref="r1Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r1SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r1BannerList" :key="i">
-                  <div class="banner-item" :style="{'background-image': `url(${item.pic})`}"></div>
+                  <div class="banner-item" :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}"></div>
                 </y-swiper-slide>
                 <ul class="swiper-nav">
                   <li :class="{active: r1ActiveIndex == i}" v-for="(item, i) in r1BannerList"  @click="swiperJump('r1Swiper',i)" :key="i"></li>
@@ -25,7 +25,7 @@
             <div class="banner-wrap">
               <y-swiper ref="r2Swiper" :autoPlay="true" :delay="2000" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r2BannerList" :key="i">
-                  <div class="banner-item" :style="{'background-image': `url(${item.pic})`}">
+                  <div class="banner-item" :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}">
                   </div>
                 </y-swiper-slide>
                 <ul class="swiper-nav">
@@ -38,8 +38,8 @@
             </div>
             <ul  class="category-wrap">
               <li v-for="(item, i) in r2BannerList" :key="i">
-                <a :href="`./goods_cate.html?id=${item.relationId}`" :style="{'background-image': `url(${item.pic})`}">
-                  <img :src="item.coverImg" alt="">
+                <a :href="`./goods_cate.html?id=${item.relationId}`" :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}">
+                  <!-- <img :src="imgUrlEncode(item.pic)" alt=""> -->
                   <div class="cate-des">
                     <div class="inner">
                       <p class="item-eng-name">{{item.relation.r2_englishName}}</p>
@@ -64,7 +64,7 @@
               <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r3BannerList" :key="i">
                   <a class="banner-item" :href="`./newsDetail.html?id=${item.relationId}`">
-                    <div class="col1"  :style="{'background-image': `url(${item.pic})`}">
+                    <div class="col1"  :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}">
                       <!-- <img src="../../assets/imgs/768-557.png" alt=""> -->
                     </div>
                     <div class="col2">
@@ -78,7 +78,7 @@
               </y-swiper>
             </div>
             <ul class="bottom-bg">
-              <li :class="{active: r3ActiveIndex == i}" v-for="(item, i) in r3BannerList" :key="i" :style="{'background-image': `url(${item.pic})`}"></li>
+              <li :class="{active: r3ActiveIndex == i}" v-for="(item, i) in r3BannerList" :key="i" :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}"></li>
               <div class="mask-cover"></div>
             </ul>
           </div>
@@ -102,11 +102,13 @@ import YSwiperSlide from "@component/YSwiperSlide";
 import YNewsCard from "@component/YNewsCard";
 
 import YFooter from "@component/YFooter";
-
 import { getIndexList, getCateList, getNewsList } from "@model/carousel";
-
+import { imgUrlEncode } from "@util/common";
 
 export default {
+  filter:{
+    
+  },
   components: {
     YHeader, YSwiper, YSwiperSlide, YFooter, YNewsCard,
   },
@@ -155,6 +157,7 @@ export default {
     });
   },
   methods: {
+    imgUrlEncode,
     yToFixed(n, l){
       if(typeof n == "number"){
         let r = n + "";

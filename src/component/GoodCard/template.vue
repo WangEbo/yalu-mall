@@ -2,7 +2,7 @@
     <div class="good-card">
       <a :href="item.url" v-if="item" target="_blank">
         <div class="g-img">
-          <div class="g-img-inner" :style="{'background-image': `url(${item.pic})`}"></div>
+          <div class="g-img-inner" :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}"></div>
         </div>
         <div class="g-info">
           <p class="g-name">{{item.name}}</p>
@@ -16,6 +16,7 @@
 
 <script>
 import { Empty } from "element-ui";
+import { imgUrlEncode } from "@util/common";
 
 const defaultPageSize = 4;
 export default {
@@ -53,6 +54,7 @@ export default {
     };
   },
   methods: {
+    imgUrlEncode,
   },
 };
 </script>

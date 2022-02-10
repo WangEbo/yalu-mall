@@ -7,7 +7,7 @@
           <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
             <y-swiper-slide v-for="(item, i) in bannerList" :key="i">
               <a class="banner-item" :href="`./newsDetail.html?id=${item.relationId}`">
-                <div class="col1"  :style="{'background-image': `url(${item.pic})`}">
+                <div class="col1"  :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}">
                   
                 </div>
                 <div class="col2">
@@ -21,7 +21,7 @@
           </y-swiper>
         </div>
         <ul class="bottom-bg">
-          <li :class="{active: activeIndex == i}" v-for="(item, i) in bannerList" :key="i" :style="{'background-image': `url(${item.pic})`}"></li>
+          <li :class="{active: activeIndex == i}" v-for="(item, i) in bannerList" :key="i" :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}"></li>
           <div class="mask-cover"></div>
         </ul>
       </div>
@@ -65,6 +65,7 @@ import YFooter from "@component/YFooter";
 
 import { getNewsList } from "@model/carousel";
 import { getNewsPageList } from "@model/news";
+import { imgUrlEncode } from "@util/common";
 
 export default {
   components: {
@@ -115,6 +116,7 @@ export default {
     this.getNewsPageList();
   },
   methods: {
+    imgUrlEncode,
     curpageChange(p){
       this.pager.pageNum = p;
     },

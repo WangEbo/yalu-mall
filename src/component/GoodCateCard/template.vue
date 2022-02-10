@@ -1,6 +1,6 @@
 <template>
   <div class="cate-wrap">
-    <div class="cate-cover-img"  :style="{'background-image': `url(${cate.coverImg})`}">
+    <div class="cate-cover-img"  :style="{'background-image': `url('${imgUrlEncode(cate.coverImg)}')`}">
       <div class="cate-name-1">{{cate.name}}</div>
       <div class="cate-tabs">
         <ul>
@@ -29,6 +29,7 @@
 import { queryGoodList } from "@model/goods";
 import { Empty } from "element-ui";
 import GoodCard from "../GoodCard";
+import { imgUrlEncode } from "@util/common";
 
 const defaultPageSize = 4;
 export default {
@@ -80,6 +81,7 @@ export default {
     };
   },
   methods: {
+    imgUrlEncode,
     getCateGoods(){
       queryGoodList({
         productCategoryId: this.activeChildCate.id,

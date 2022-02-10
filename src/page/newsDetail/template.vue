@@ -2,7 +2,7 @@
   <div class="news-detail">
     <YHeader></YHeader>
     <div class="top-bg">
-      <div class="pic" :style="{'background-image':`url(${detail.coverImg})`}"></div>
+      <div class="pic" :style="{'background-image':`url('${imgUrlEncode(detail.coverImg)}')`}"></div>
       <div class="mask-cover"></div>
     </div>
     <div class="back">
@@ -25,7 +25,7 @@
 <script>
 import YHeader from "@component/YHeader";
 import YFooter from "@component/YFooter";
-
+import { imgUrlEncode } from "@util/common";
 import { getNewsDetailById, getNewsPageList } from "@model/news";
 export default {
   components: { YHeader },
@@ -45,6 +45,7 @@ export default {
     this.getDetail();
   },
   methods: {
+    imgUrlEncode,
     getDetail(){
       let query = location.href.split("?")[1].split("=");
       if(!query[1]){

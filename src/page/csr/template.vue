@@ -7,8 +7,8 @@
       <div class="csr-content">
         <ul>
           <li v-for="(item, i) in list" class="view-item" :key="i">
-            <div class="img-wrap" :style="{ 'background-image': item.imgUrl }">
-              <img :src="item.imgUrl" alt="">
+            <div class="img-wrap">
+              <img :src="imgUrlEncode(item.imgUrl)" alt="">
             </div>
             <div class="csr-item">
               <h4>{{item.title}}</h4>
@@ -32,8 +32,9 @@ import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 
 import { getCsrList } from "@model/csr";
-
+import { imgUrlEncode } from "@util/common";
 require("../../assets/imgs/banner/banner1.png");
+
 export default {
   components: {
     YHeader, YFooter, BrandNav,
@@ -59,6 +60,7 @@ export default {
     this.getList();
   },
   methods: {
+    imgUrlEncode,
     getList() {
       getCsrList().then(res => {
         this.list = res.data.list;
