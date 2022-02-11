@@ -3,7 +3,7 @@
   <div id="overview-page" class="index">
     <y-header></y-header>
     <div class="main-content">
-      <BrandNav :activeName="'overview'"></BrandNav>
+      <BrandNav :activeName="'store_image'"></BrandNav>
       <div :class="['overview-content', loading ? 'loading' :'']">
         <video  class="bg-video" autoplay loop="loop" muted="muted" :src="brandVideo" v-show="brandVideo"></video>
         <ul>
@@ -28,7 +28,7 @@ import YHeader from "@component/YHeader";
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 import { imgUrlEncode } from "@util/common";
-import { getOverviewList } from "@model/overview";
+import { getStoreImageList } from "@model/image";
 import { getConfig } from "@util/common";
 
 export default {
@@ -64,7 +64,7 @@ export default {
     imgUrlEncode,
     getList() {
       this.loading = true;
-      getOverviewList().then(res => {
+      getStoreImageList().then(res => {
         this.list = res.data.list;
       }).catch(err=> {
         this.loading = false;

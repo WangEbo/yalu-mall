@@ -8,6 +8,7 @@
       <div class="cate-content">
         <CateFilter v-if="cateTree" @rangeChange="getList()" @colorChange="getList()" :class="{active: filterVisible}" v-show="filterVisible" :tree="cateTree" v-model="filter" :activeIndex="activeIndex"></CateFilter>
         <div class="cate-good-list">
+          <video class="bg-video" autoplay loop="loop" muted="muted" v-show="cate.videoUrl" :src="cate.videoUrl"></video>
           <ul>
             <li v-for="(item, i) in list" :key="i">
               <good-card v-if="item" :item="item" :cate="cate"></good-card>
@@ -57,6 +58,7 @@ export default {
       activeIndex: "",
       cate: {
         coverImg: "",
+        videoUrl: "",
       },
       list: [
         {

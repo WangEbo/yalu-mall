@@ -119,7 +119,7 @@
 
 <script>
 
-import { getConfig } from "@model/global";
+import { getConfig } from "@util/common";
 require("../../assets/imgs/bm-logo.png");
 export default {
   name: "YFooter",
@@ -141,8 +141,8 @@ export default {
       return ar instanceof Array && Array.isArray(ar);
     },
     getConfig(){
-      getConfig().then(res=> {
-        this.info = res.data;
+      getConfig().then(config=> {
+        this.$set(this, "info", config);
         this.$nextTick(()=> {
           this.generateQrCode();
         });

@@ -2,6 +2,7 @@
   <!-- 商品主页  分五类推荐 -->
   <div id="goods-page" class="index">
     <y-header></y-header>
+    <video class="bg-video" autoplay loop="loop" muted="muted" v-show="goodsVideo" :src="goodsVideo"></video>
     <div class="main-content">
       <div class="goods-content">
         <ul>
@@ -22,8 +23,8 @@ import BrandNav from "@component/BrandNav";
 import GoodCateCard from "@component/GoodCateCard";
 
 import { getGoodsTree } from "@model/goods";
+import { getConfig } from "@util/common";
 
-require("../../assets/imgs/banner/banner1.png");
 export default {
   components: {
     YHeader, YFooter, BrandNav, GoodCateCard,
@@ -39,10 +40,14 @@ export default {
       list: [
         
       ],
+      goodsVideo: "",
     };
   },
   mounted() {
     this.getGoodsTree();
+    getConfig().then(config=> {
+      this.goodsVideo = config.goodsVideo;
+    });
   },
   methods: {
     getGoodsTree() {

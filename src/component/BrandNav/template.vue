@@ -57,6 +57,13 @@ export default {
           icon: "icon-csr",
           href: "./csr.html",
         },
+        {
+          name: "store_image",
+          engText: "storeImage",
+          text: "店铺形象",
+          icon: "icon-dianpu",
+          href: "./store_image.html",
+        },
       ],
     };
   },

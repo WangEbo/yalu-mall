@@ -35,3 +35,18 @@ export const imgUrlEncode = (path)=> {
   console.log(r_path);
   return r_path;
 };
+
+
+export const getConfig = async ()=> {
+  return new Promise((resolve, reject)=> {
+    let timer = setInterval(() => {
+      let config = localStorage.getItem("config");
+      if(!config){
+        return;
+      }else{
+        clearInterval(timer);
+        resolve(JSON.parse(config));
+      }
+    }, 500);
+  });
+};

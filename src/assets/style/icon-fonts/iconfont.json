@@ -6,6 +6,13 @@
   "description": "雅鹿服饰官网",
   "glyphs": [
     {
+      "icon_id": "577334",
+      "name": "店铺",
+      "font_class": "dianpu",
+      "unicode": "e736",
+      "unicode_decimal": 59190
+    },
+    {
       "icon_id": "7409538",
       "name": "filter",
       "font_class": "filter",

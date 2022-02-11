@@ -92,7 +92,7 @@
     }
     li {
       a {
-        width: 25vw;/*no*/
+        width: 20vw;/*no*/
         line-height: 60px;/*no*/
         span.icon {
           font-size: 20px;/*no*/
@@ -124,9 +124,12 @@
     ul {
       li {
         a {
+          padding: 3px 5px;/*no*/
+          flex-direction: column;
           line-height: 54px;/*no*/
           span.icon {
             font-size: 16px;/*no*/
+            line-height: 20px;/*no*/
           }
           .right-part {
             p{

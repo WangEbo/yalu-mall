@@ -110,9 +110,13 @@ export default {
       logo: "",
     };
   },
+  beforeCreate(){
+    localStorage.removeItem("config");
+  },
   mounted(){
     this.getMenu();
     getConfig().then(res=> {
+      localStorage.setItem("config", JSON.stringify(res.data));
       this.logo = res.data.logo;
     });
   },
