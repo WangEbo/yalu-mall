@@ -54,7 +54,27 @@
             <a :title="info.wechatQr" class="icon iconfont icon-weixin"></a>
             <div class="items">
               <div class="shadow" style="background-color: #fff;">
-                <div class="wxQrCode" ></div>
+                <div class="wxQrCode qrcode"><img :src="info.wechatQr" alt=""></div>
+                <div class="f-center mt-4 pb-4">关注我们</div>
+              </div>
+              <span></span>
+            </div>
+          </div>
+          <div class="inter">
+            <a :title="info.douyinQr" class="icon iconfont icon-douyin"></a>
+            <div class="items">
+              <div class="shadow" style="background-color: #fff;">
+                <div class="wxQrCode qrcode"><img :src="info.douyinQr" alt=""></div>
+                <div class="f-center mt-4 pb-4">关注我们</div>
+              </div>
+              <span></span>
+            </div>
+          </div>
+        <div class="inter">
+          <a :title="info.kuaishouQr" class="icon iconfont icon-kuaishou"></a>
+          <div class="items">
+              <div class="shadow" style="background-color: #fff;">
+                <div class="wxQrCode qrcode"><img :src="info.kuaishouQr" alt=""></div>
                 <div class="f-center mt-4 pb-4">关注我们</div>
               </div>
               <span></span>
@@ -96,7 +116,27 @@
           <a :title="info.wechatQr" class="icon iconfont icon-weixin"></a>
           <div class="items">
             <div class="shadow" style="background-color: #fff;">
-              <div class="wxQrCode" ></div>
+              <div class="wxQrCode qrcode"><img :src="info.wechatQr" alt=""></div>
+              <div class="f-center mt-4 pb-4">关注我们</div>
+            </div>
+            <span></span>
+          </div>
+        </div>
+        <div class="inter">
+          <a :title="info.douyinQr" class="icon iconfont icon-douyin"></a>
+          <div class="items">
+            <div class="shadow" style="background-color: #fff;">
+              <div class="wxQrCode qrcode"><img :src="info.douyinQr" alt=""></div>
+              <div class="f-center mt-4 pb-4">关注我们</div>
+            </div>
+            <span></span>
+          </div>
+        </div>
+        <div class="inter">
+          <a :title="info.kuaishouQr" class="icon iconfont icon-kuaishou"></a>
+          <div class="items">
+            <div class="shadow" style="background-color: #fff;">
+              <div class="wxQrCode qrcode"><img :src="info.kuaishouQr" alt=""></div>
               <div class="f-center mt-4 pb-4">关注我们</div>
             </div>
             <span></span>
@@ -105,7 +145,6 @@
       </div>
       <div class="shop-platforms">
         <span>购物平台 <i class="icon iconfont icon-arrow-right"></i></span>
-        
         <div class="items">
           <ul>
             <li v-for="(item,i) in info.shoppingPlatforms" :key="i"><a :href="item.href" target="_blank">{{item.name}}</a></li>
@@ -149,7 +188,7 @@ export default {
       });
     },
     generateQrCode(){
-      jQuery(".wxQrCode").qrcode({ width: 60, height: 60, text: this.info.wechatQr});
+      // jQuery(".wxQrCode").qrcode({ width: 60, height: 60, text: this.info.wechatQr});
     },
   },
 };

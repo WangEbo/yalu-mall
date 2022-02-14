@@ -6,6 +6,20 @@
   "description": "雅鹿服饰官网",
   "glyphs": [
     {
+      "icon_id": "18166694",
+      "name": "抖音",
+      "font_class": "douyin",
+      "unicode": "e8db",
+      "unicode_decimal": 59611
+    },
+    {
+      "icon_id": "18166712",
+      "name": "快手",
+      "font_class": "kuaishou",
+      "unicode": "e8dc",
+      "unicode_decimal": 59612
+    },
+    {
       "icon_id": "577334",
       "name": "店铺",
       "font_class": "dianpu",
