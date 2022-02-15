@@ -274,11 +274,24 @@ h5 {
 
 .bg-video{
   width: 100%;
-  height: 31.3vw;;
+  height: 31.3vw;
+  margin: 20px 0;/*no*/
 }
 @media screen and (max-width: 800px){
   .bg-video{
     height: 200px;/*no*/
-    margin-bottom: 15px;/*no*/
+    margin: 15px 0;/*no*/
   }
+}
+
+.vjs-poster{
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+  box-sizing: content-box;
+}
+.video-js .vjs-tech{
+  background-color: #fff;
+}
+.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar{
+  opacity: 0;
 }

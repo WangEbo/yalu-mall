@@ -17,7 +17,7 @@ export default {
     },
     dealy: { //循环延迟
       type: Number,
-      default: 2500,
+      default: 5000,
     },
     /**
      * string  fade | scroll 

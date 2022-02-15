@@ -6,7 +6,7 @@
         <section id="r1" class="section part active">
           <div class="section-content">
             <div class="banner-wrap">
-              <y-swiper ref="r1Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r1SwiperChange">
+              <y-swiper ref="r1Swiper" :navEl="'swiper-nav'" :autoPlay="true"  @swiperChange="r1SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r1BannerList" :key="i">
                   <div class="banner-item" :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}"></div>
                 </y-swiper-slide>
@@ -23,7 +23,7 @@
         <section id="r2" class="section part">
           <div class="section-content">
             <div class="banner-wrap">
-              <y-swiper ref="r2Swiper" :autoPlay="true" :delay="2000" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
+              <y-swiper ref="r2Swiper" :autoPlay="true" :navEl="'swiper-nav'"  @swiperChange="r2SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r2BannerList" :key="i">
                   <div class="banner-item" :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}">
                   </div>
@@ -61,7 +61,7 @@
         <section id="r3" class="section part">
           <div class="section-content">
             <div class="banner-wrap">
-              <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
+              <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true"  @swiperChange="r3SwiperChange">
                 <y-swiper-slide v-for="(item, i) in r3BannerList" :key="i">
                   <a class="banner-item" :href="`./newsDetail.html?id=${item.relationId}`">
                     <div class="col1"  :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}">

@@ -2,7 +2,7 @@
   <!-- 商品主页  分五类推荐 -->
   <div id="goods-page" class="index">
     <y-header></y-header>
-    <video class="bg-video" autoplay loop="loop" muted="muted" v-show="goodsVideo" :src="goodsVideo"></video>
+    <YVideo v-if="goodsVideo" class="video-js bg-video" :controls="true" :autoplay="true" :loop="true" :poster="''" :src="goodsVideo"></YVideo>
     <div class="main-content">
       <div class="goods-content">
         <ul>
@@ -17,7 +17,7 @@
 </template>
 <script>
 import YHeader from "@component/YHeader";
-
+import YVideo from "@component/YVideo";
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 import GoodCateCard from "@component/GoodCateCard";
@@ -27,7 +27,7 @@ import { getConfig } from "@util/common";
 
 export default {
   components: {
-    YHeader, YFooter, BrandNav, GoodCateCard,
+    YHeader, YFooter, BrandNav, GoodCateCard, YVideo,
   },
   created() {
 

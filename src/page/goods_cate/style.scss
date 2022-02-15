@@ -2,10 +2,13 @@
   padding-top: $headerHeight;
   .main-content{
     .cate-bg{
-      height: 50vh;
+      height: 31.3vw;
       @include adptiveBg;
     }
-
+    .bg-video{
+      margin-top: 0;
+      margin-top: -5px;/*no*/
+    }
     .cate-content{
       display: flex;
       width: 80%;

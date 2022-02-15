@@ -6,9 +6,9 @@
       <div class="cate-bg" :style="{ 'background-image': `url('${imgUrlEncode(cate && cate.coverImg)}')`}">
       </div>
       <div class="cate-content">
-        <CateFilter v-if="cateTree" @rangeChange="getList()" @colorChange="getList()" :class="{active: filterVisible}" v-show="filterVisible" :tree="cateTree" v-model="filter" :activeIndex="activeIndex"></CateFilter>
+        <CateFilter v-if="cateTree" @rangeChange="getList()" @colorChange="getList()" :class="{active: filterVisible}" :tree="cateTree" v-model="filter" :activeIndex="activeIndex"></CateFilter>
         <div class="cate-good-list">
-          <video class="bg-video" autoplay loop="loop" muted="muted" v-show="cate.videoUrl" :src="cate.videoUrl"></video>
+          <YVideo v-if="cate.videoUrl" class="video-js bg-video" :controls="true" :autoplay="true" :loop="true" :poster="''" v-show="cate.videoUrl" :src="cate.videoUrl"></YVideo>
           <ul>
             <li v-for="(item, i) in list" :key="i">
               <good-card v-if="item" :item="item" :cate="cate"></good-card>
@@ -30,7 +30,7 @@ import YFooter from "@component/YFooter";
 import CateFilter from "@component/CateFilter";
 import { Empty } from "element-ui";
 import GoodCard from "@component/GoodCard";
-
+import YVideo from "@component/YVideo";
 
 import { queryGoodList, getGoodsTree } from "@model/goods";
 import { getUrlQuery, imgUrlEncode } from "@util/common";
@@ -49,7 +49,7 @@ let defaultFilter = {
 };
 export default {
   components: {
-    YHeader, YFooter, CateFilter, Empty, GoodCard,
+    YHeader, YFooter, CateFilter, Empty, GoodCard, YVideo,
   },
   computed: {
   },

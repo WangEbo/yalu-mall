@@ -4,7 +4,7 @@
     <section id="top-banner" class="section part">
       <div class="section-content">
         <div class="banner-wrap">
-          <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true" :delay="2000"  @swiperChange="r3SwiperChange">
+          <y-swiper ref="r3Swiper" :navEl="'swiper-nav'" :autoPlay="true"  @swiperChange="r3SwiperChange">
             <y-swiper-slide v-for="(item, i) in bannerList" :key="i">
               <a class="banner-item" :href="`./newsDetail.html?id=${item.relationId}`">
                 <div class="col1"  :style="{'background-image': `url('${imgUrlEncode(item.pic)}')`}">

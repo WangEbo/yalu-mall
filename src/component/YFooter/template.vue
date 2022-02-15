@@ -90,7 +90,7 @@
       </div>
       <div class="mid">
         <p class="p-des">
-          中国安备号4299999239940 <br>雅鹿股份有限公司
+          中国安备号4299999239940 <br>雅鹿集团股份有限公司
         </p>
       </div>
       <div class="right">

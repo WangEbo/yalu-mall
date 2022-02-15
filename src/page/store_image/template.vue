@@ -5,7 +5,6 @@
     <div class="main-content">
       <BrandNav :activeName="'store_image'"></BrandNav>
       <div :class="['overview-content', loading ? 'loading' :'']">
-        <video  class="bg-video" autoplay loop="loop" muted="muted" :src="brandVideo" v-show="brandVideo"></video>
         <ul>
           <li v-for="(item, i) in list" class="view-item" :key="i">
             <div class="img-wrap" >

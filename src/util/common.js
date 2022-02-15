@@ -50,3 +50,9 @@ export const getConfig = async ()=> {
     }, 500);
   });
 };
+
+export const getFileSuffix = (path)=> {
+  if(typeof path != "string")return;
+  var index = path.lastIndexOf(".");
+  return path.substring(index+1);
+};

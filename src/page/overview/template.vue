@@ -5,7 +5,7 @@
     <div class="main-content">
       <BrandNav :activeName="'overview'"></BrandNav>
       <div :class="['overview-content', loading ? 'loading' :'']">
-        <video  class="bg-video" autoplay loop="loop" muted="muted" :src="brandVideo" v-show="brandVideo"></video>
+        <YVideo v-if="brandVideo" class="video-js bg-video" :controls="true" :autoplay="true" :loop="true" :poster="''" :src="brandVideo"></YVideo>
         <ul>
           <li v-for="(item, i) in list" class="view-item" :key="i">
             <div class="img-wrap" >
@@ -24,7 +24,7 @@
 </template>
 <script>
 import YHeader from "@component/YHeader";
-
+import YVideo from "@component/YVideo";
 import YFooter from "@component/YFooter";
 import BrandNav from "@component/BrandNav";
 import { imgUrlEncode } from "@util/common";
@@ -33,11 +33,18 @@ import { getConfig } from "@util/common";
 
 export default {
   components: {
-    YHeader, YFooter, BrandNav,
+    YHeader, YFooter, BrandNav, YVideo,
   },
   created() {
     getConfig().then(config=> {
       this.brandVideo = config.brandVideo;
+      // this.$nextTick(()=> {
+      //   let video = this.$refs.video;
+      //   setTimeout(()=> {
+      //     video.volume = 0.5;
+      //     video.play();
+      //   }, 1000);
+      // });
     });
   },
   computed: {
