@@ -23,7 +23,7 @@
           <div class="list-part">
             <ul>
               <li v-for="(item,i) in col1" :key="i">
-                <h4>{{item.eventTime.substr(0, 10)}}</h4>
+                <h4>{{item.eventTime.substr(0, 7)}}</h4>
                 <p>{{item.eventContent}}</p>
               </li>
             </ul>
