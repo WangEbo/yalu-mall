@@ -77,6 +77,7 @@
 @media screen and(max-width: 800px) {
 .tabs.page-nav {
   height: 45vh;
+  margin-bottom: 4vh;/*no*/
   ul {
     width: 100%;
     margin-left: 10%;
@@ -124,7 +125,7 @@
     ul {
       li {
         a {
-          padding: 3px 5px;/*no*/
+          padding: 3px 2px;/*no*/
           flex-direction: column;
           line-height: 54px;/*no*/
           span.icon {

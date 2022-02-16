@@ -24,3 +24,9 @@
   margin-top: $headerHeight;
 
 }
+
+@media screen and (max-width: 800px) {
+  #goods-page{
+    margin-top: 70px;/*no*/
+  }
+}
