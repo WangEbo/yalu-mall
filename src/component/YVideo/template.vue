@@ -1,5 +1,5 @@
 <template>
-  <video ref="video" id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" autoplay controls poster="">
+  <video ref="video" id="example_video" class="video-js vjs-default-skin vjs-big-play-centered" muted="muted" autoplay controls poster="">
     <source v-if="src" :src="src" :type="`video/${getFileSuffix(src)}`">
   </video>
 </template>
@@ -21,6 +21,7 @@ export default {
     },
     muted: {
       type: Boolean,
+      default: true,
     },
     controls: {
       type: Boolean,
@@ -44,7 +45,7 @@ export default {
         controls: this.controls,
         poster: this.poster,
         bgcolor: "#fff",
-        volume: 0.5,
+        volume: 0.5,//音量
       }, function onPlayerReady() {
         videojs.log("播放器已准备好!");
         // In this context, `this` is the player that was created by Video.js.<br>  // 注意，这个地方的上下文， `this` 指向的是Video.js的实例对像player
