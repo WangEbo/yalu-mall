@@ -3,7 +3,7 @@
     <div class="notice">{{notice}}</div>
     <div class="nav-wrap" >
       <a href="/" title="雅鹿官方网站" class="logo-box">
-        <img :src="logo || '/img/logo.png'" alt="雅鹿官方网站">
+        <img :src="logo" alt="雅鹿官方网站">
       </a>
       <nav class="pc-nav pc">
         <ul>

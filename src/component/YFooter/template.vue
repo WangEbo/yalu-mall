@@ -22,9 +22,13 @@
             <h6>全国服务热线</h6>
             <a class="able-link"  :href="`tel:${info.telephone}`" >{{info.telephone}}</a>
           </li>
-          <li>
+          <!-- <li>
             <h6>QQ 客服</h6>
             <a class="able-link">{{info.qq}}</a>
+          </li> -->
+          <li>
+            <h6>工作时间</h6>
+            <p class="p-des">{{info.workingTime}}</p>
           </li>
           <li>
             <h6>校园招聘</h6>
@@ -35,12 +39,11 @@
             <p class="p-des">{{info.address}}</p>
           </li>
           <li>
-            <h6>工作时间</h6>
-            <p class="p-des">{{info.workingTime}}</p>
-          </li>
-          <li>
             <h6>邮编</h6>
             <p class="p-des">{{info.zipCode}}</p>
+          </li>
+          <li>
+            
           </li>
         </ul>
       </div>
@@ -90,7 +93,7 @@
       </div>
       <div class="mid">
         <p class="p-des">
-          中国安备号4299999239940 <br>雅鹿集团股份有限公司
+          {{info.beianCode}} <br>{{info.companyName}}
         </p>
       </div>
       <div class="right">
@@ -159,7 +162,6 @@
 <script>
 
 import { getConfig } from "@util/common";
-require("../../assets/imgs/bm-logo.png");
 export default {
   name: "YFooter",
   data(){
@@ -168,7 +170,7 @@ export default {
         telPhone: [""],
         shoppingPlatforms: [{}],
         largeTelPhone: [""],
-        weiboLink: "",
+        weiboLink: "",  
       },
     };
   },

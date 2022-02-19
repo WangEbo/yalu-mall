@@ -1,6 +1,6 @@
 <!-- 年份导航 -->
 <template>
-  <div class="tabs page-nav">
+  <div class="tabs page-nav" :style="{'background-image': `url('${info.brandIntroImg}')`}">
     <ul class="tab-wrap">
       <h3>{{activeItem.text}}</h3>
       <p>{{activeItem.engText}}</p>
@@ -11,15 +11,14 @@
             <p>{{item.engText}}</p>
             <p>{{item.text}}</p>
           </div>
-          
         </a>
-        
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { getConfig } from "@util/common";
 
 export default {
   name: "BrandNav",
@@ -65,7 +64,20 @@ export default {
           href: "./store_image.html",
         },
       ],
+      info: {
+        brandIntroImg: "",
+      },
     };
+  },
+  created(){
+    this.getConfig();
+  },
+  methods: {
+    getConfig(){
+      getConfig().then(config=> {
+        this.$set(this, "info", config);
+      });
+    },
   },
 };
 </script>
