@@ -56,6 +56,9 @@
     padding: 40px;
     min-height: 80vh;
     z-index: 2;
+    a, span, li, b, i, label, p, strong, div, h1, h2, h3, h4, h5, h6, font, small, em, li, pre, form, fieldset, legend, button, input, textarea, th, td{
+      font-size: 16px;
+    }
     .time{
       font-size: 20px;
       font-weight: bold;
