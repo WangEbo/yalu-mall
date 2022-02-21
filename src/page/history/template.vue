@@ -6,15 +6,15 @@
       <!-- 年份导航 -->
       <div class="year-nav">
         <div class="divide-line"></div>
-        <i class="icon iconfont icon-arrow-right left"></i>
+        <i class="icon iconfont icon-arrow-right left" @click="selectPreYear"></i>
         <div class="inner-wrap" ref="scroll">
-          <ul>
-            <li @click="selectYear(year)" :class="['year-item', curYear == year ? 'active' : '']" v-for="(year, i) in list" :key="i">
+          <ul class="scroll-ul">
+            <li @click="selectYear(year)" :class="['year-item', `year-item-${i}`, curYear == year ? 'active' : '']" v-for="(year, i) in list" :key="i">
               <span class="arrow"></span><span>{{year}}</span>
             </li>
           </ul>
         </div>
-        <i class="icon iconfont icon-arrow-right right"></i>
+        <i class="icon iconfont icon-arrow-right right"  @click="selectNextYear"></i>
       </div>
       <!-- 历史内容 -->
       <div class="hisroty-list">
@@ -115,6 +115,30 @@ export default {
     selectYear(year){
       this.curYear = year;
       this.getList();
+    },
+    selectPreYear(){
+      if(!this.list.length)return;
+      let index = this.list.indexOf(this.curYear),
+        selectedIndex;
+      if(index == 0){
+        selectedIndex = this.list.length - 1;
+      }else{
+        selectedIndex = index - 1;
+      }
+      this.curYear = this.list[selectedIndex];
+      Bs.scrollToElement(document.querySelector("." + `year-item-${selectedIndex}`));
+    },
+    selectNextYear(){
+      if(!this.list.length)return;
+      let index = this.list.indexOf(this.curYear),
+        selectedIndex;
+      if(index == this.list.length - 1){
+        selectedIndex = 0;
+      }else{
+        selectedIndex = index + 1;
+      }
+      this.curYear = this.list[selectedIndex];
+      Bs.scrollToElement(document.querySelector("." + `year-item-${selectedIndex}`));
     },
     getList() {
       this.loading = true;

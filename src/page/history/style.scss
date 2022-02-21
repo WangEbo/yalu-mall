@@ -49,6 +49,7 @@
         height: $h;/*no*/
         color: $textColor;
         transform-origin: center center;
+        cursor: pointer;
       }
 
       .iconfont.left{
@@ -60,10 +61,11 @@
       .inner-wrap{
         flex: 1;
         overflow: hidden;
-        ul{
+        ul.scroll-ul{
           white-space: nowrap;
           display: inline-block;
           padding: 30px 0;
+          transition: transform .3s ease-in-out!important;
           li.year-item{
             display: inline-block;
             font-family: en-m;
