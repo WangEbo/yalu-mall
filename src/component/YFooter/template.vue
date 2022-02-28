@@ -93,7 +93,7 @@
       </div>
       <div class="mid">
         <p class="p-des">
-          {{info.beianCode}} <br>{{info.companyName}}
+          <span @click="openBeian" style="cursor: pointer;">{{info.beianCode}}</span> <br>{{info.companyName}}
         </p>
       </div>
       <div class="right">
@@ -191,6 +191,9 @@ export default {
     },
     generateQrCode(){
       // jQuery(".wxQrCode").qrcode({ width: 60, height: 60, text: this.info.wechatQr});
+    },
+    openBeian(){
+      window.open("https://beian.miit.gov.cn/#/Integrated/index");
     },
   },
 };
