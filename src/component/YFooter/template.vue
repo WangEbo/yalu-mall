@@ -89,7 +89,7 @@
     </div>
     <div class="f-bottom">
       <div class="left">
-        <img src="/img/bm-logo.png" alt="">
+        <img src="/img/bm-logo1.png" alt="">
       </div>
       <div class="mid">
         <p class="p-des">
@@ -162,6 +162,7 @@
 <script>
 
 import { getConfig } from "@util/common";
+require("../../assets/imgs/bm-logo1.png");
 export default {
   name: "YFooter",
   data(){
