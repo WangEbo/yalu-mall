@@ -17,9 +17,9 @@
         <p class="time">{{detail.createTime && detail.createTime.substr(0, 10)}}</p>
         <p class="title">{{detail.title}}</p>
       </div>
-      <div class="content-inner" v-html="detail.content"></div>
+      <div class="content-inner ql-editor" v-html="detail.content"></div>
     </div>
-    <y-footer></y-footer>
+    <!-- <y-footer></y-footer> -->
   </div>
 </template>
 <script>
@@ -27,11 +27,13 @@ import YHeader from "@component/YHeader";
 import YFooter from "@component/YFooter";
 import { imgUrlEncode } from "@util/common";
 import { getNewsDetailById, getNewsPageList } from "@model/news";
+import "@assets/style/quill.core.css";
+import "@assets/style/quill.snow.css";
 export default {
   components: { YHeader },
   data(){
     return {
-      detail: {
+      detail:{
         content: "",
         coverImg: "",
         createTime: "",
@@ -63,4 +65,7 @@ export default {
 </script>
 <style lang="scss">
 @import "./style.scss";
+.content-inner{
+  tab-size: 4;
+}
 </style>
